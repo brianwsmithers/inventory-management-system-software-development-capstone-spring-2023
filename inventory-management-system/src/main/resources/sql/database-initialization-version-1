@@ -1,0 +1,216 @@
+/*
+Author: Brian Smithers
+Date: 2/15/2023
+Description: Initializes database with tables and sequences.
+*/
+
+
+/*
+    DROP EXISTING TABLES AND SEQUENCES IN REVERSE ORDER OF CREATION.
+*/
+DROP SEQUENCE order_detail_ID_seq;
+DROP TABLE order_details CASCADE CONSTRAINTS;
+
+DROP SEQUENCE product_ID_seq;
+DROP TABLE products CASCADE CONSTRAINTS;
+
+DROP SEQUENCE product_category_ID_seq;
+DROP TABLE product_category CASCADE CONSTRAINTS;
+
+DROP SEQUENCE supplier_ID_seq;
+DROP TABLE suppliers CASCADE CONSTRAINTS;
+
+DROP SEQUENCE bill_number_seq;
+DROP TABLE payments CASCADE CONSTRAINTS;
+
+DROP SEQUENCE staff_staff_ID_seq;
+DROP TABLE staff CASCADE CONSTRAINTS;
+
+DROP SEQUENCE orders_order_ID_seq;
+DROP TABLE orders CASCADE CONSTRAINTS;
+
+DROP SEQUENCE customers_customer_ID_seq;
+DROP TABLE customers CASCADE CONSTRAINTS;
+
+
+/*
+    Create Customers Table
+*/
+CREATE TABLE customers (
+    customer_ID     NUMBER          NOT NULL,
+    first_name      VARCHAR2(40),
+    last_name       VARCHAR2(40),
+    address         VARCHAR2(40),
+    phone           NUMBER(10),
+    email           VARCHAR2(40),
+    staff_ID        NUMBER(10),
+
+    CONSTRAINT customers_pk PRIMARY KEY (customer_ID)
+);
+
+/*
+    Create Customers Table Sequence
+*/
+CREATE SEQUENCE customers_customer_ID_seq
+START WITH 1
+NOCYCLE;
+
+/*
+    Create Orders Table
+*/
+CREATE TABLE orders (
+    order_ID        NUMBER          NOT NULL,
+    date_of_order   DATE,
+    order_details   VARCHAR2(40),
+    customer_ID     NUMBER          NOT NULL,
+
+    CONSTRAINT orders_pk PRIMARY KEY (order_ID),
+    FOREIGN KEY (customer_ID) REFERENCES customers (customer_ID)
+);
+
+/*
+    Create Orders Table Sequence
+*/
+CREATE SEQUENCE orders_order_ID_seq
+START WITH 1
+NOCYCLE;
+
+/*
+    Create Staff Table
+*/
+CREATE TABLE staff (
+    staff_ID        NUMBER          NOT NULL,
+    first_name      VARCHAR2(40),
+    last_name       VARCHAR2(40),
+    address         VARCHAR2(40),
+    phone           NUMBER(10),
+    email           VARCHAR2(40),
+    username        VARCHAR2(40),
+    user_password   VARCHAR2(40),
+
+    CONSTRAINT staff_pk PRIMARY KEY (staff_ID)
+);
+
+/*
+    Create Staff Table Sequence
+*/
+CREATE SEQUENCE staff_staff_ID_seq
+START WITH 1
+NOCYCLE;
+
+/*
+    Create Payments Table
+*/
+CREATE TABLE payments (
+    bill_number     NUMBER          NOT NULL,
+    payment_type    VARCHAR2(40),
+    order_details   VARCHAR2(40),
+
+    CONSTRAINT payments_pk PRIMARY KEY (bill_number)
+);
+
+/*
+    Create Payments Table Sequence
+*/
+CREATE SEQUENCE bill_number_seq
+START WITH 1
+NOCYCLE;
+
+/*
+    Create Suppliers Table
+*/
+CREATE TABLE suppliers (
+    supplier_ID         NUMBER          NOT NULL,
+    supplier_name       VARCHAR2(40)    NOT NULL,
+    address             VARCHAR2(40)    NOT NULL,
+    phone               NUMBER(10)      NOT NULL,
+    fax                 NUMBER(10),
+    email               VARCHAR2(40)    NOT NULL,
+    supplier_details    VARCHAR2(40),
+
+    CONSTRAINT suppliers_pk PRIMARY KEY (supplier_ID)
+);
+
+/*
+    Create Suppliers Sequence
+*/
+CREATE SEQUENCE supplier_ID_seq
+START WITH 1
+NOCYCLE;
+
+/*
+    Create Product Category Table
+*/
+CREATE TABLE product_category (
+    category_ID             NUMBER          NOT NULL,
+    category_name           VARCHAR2(40)    NOT NULL,
+    category_description    VARCHAR2(40),
+
+    CONSTRAINT product_category_pk PRIMARY KEY (category_ID)
+);
+
+/*
+    Create Product Category Sequence
+*/
+CREATE SEQUENCE product_category_ID_seq
+START WITH 1
+NOCYCLE;
+
+/*
+    Create Products Table
+*/
+CREATE TABLE products (
+    product_ID                  NUMBER              NOT NULL,
+    product_name                VARCHAR2(40)        NOT NULL,
+    product_description         VARCHAR2(40),
+    product_unit                VARCHAR2(40),
+    product_price               NUMBER(8, 2)        NOT NULL,
+    product_quantity            NUMBER              NOT NULL,
+    --product_status            NUMBER                              what should this be used for?
+    --other_details             VARCHAR2(40)                        what should this be used for?
+    supplier_ID                 NUMBER              NOT NULL,
+    category_ID                 NUMBER              NOT NULL,
+
+    CONSTRAINT products_pk PRIMARY KEY (product_ID),
+    FOREIGN KEY (supplier_ID) REFERENCES suppliers (supplier_ID),
+    FOREIGN KEY (category_ID) REFERENCES product_category (category_ID)
+);
+
+/*
+    Create Products Sequence
+*/
+CREATE SEQUENCE product_ID_seq
+START WITH 1
+NOCYCLE;
+
+/*
+    Create Order_Details Table
+*/
+CREATE TABLE order_details (
+    order_detail_ID         NUMBER      NOT NULL,
+    unit_price              NUMBER(8, 2),
+    --size                  NUMBER(10)                  What would this be for?
+    quantity                NUMBER,
+    discount                NUMBER,
+    total                   NUMBER(8, 2),
+    date_of_order_detail    DATE        NOT NULL,
+    product_ID              NUMBER      NOT NULL,
+    order_ID                NUMBER      NOT NULL,
+    bill_number             NUMBER      NOT NULL,
+
+    CONSTRAINT order_detail_pk PRIMARY KEY (order_detail_ID),
+    FOREIGN KEY (bill_number) REFERENCES payments (bill_number)
+);
+
+/*
+    Create Order_Detail Sequence
+*/
+CREATE SEQUENCE order_detail_ID_seq
+START WITH 1
+NOCYCLE;
+
+COMMIT; -- SAVE CHANGES DATABASE
+
+
+
+
