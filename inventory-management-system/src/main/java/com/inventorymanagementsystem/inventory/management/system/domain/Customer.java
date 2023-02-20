@@ -78,4 +78,17 @@ public class Customer {
     public void setStaffID(Integer staffID) {
         this.staffID = staffID;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", staffID=" + staffID +
+                '}';
+    }
 }
