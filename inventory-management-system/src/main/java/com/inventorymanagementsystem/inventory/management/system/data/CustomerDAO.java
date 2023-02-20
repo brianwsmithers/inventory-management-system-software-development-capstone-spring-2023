@@ -19,7 +19,7 @@ public class CustomerDAO implements DAO<Customer> {
 
     private ResultSet resultSet;
 
-    private int customerID;
+    private long customerID;
     private String firstName;
     private String lastName;
     private String address;
@@ -50,11 +50,11 @@ public class CustomerDAO implements DAO<Customer> {
             resultSet = database.query(query);
 
             while (resultSet.next()) {
-                customerID = resultSet.getInt(resultSet.findColumn("customer_id"));
+                customerID = resultSet.getLong(resultSet.findColumn("customer_id"));
                 firstName = resultSet.getString(resultSet.findColumn("first_name"));
-                resultSet.next();lastName = resultSet.getString(resultSet.findColumn("last_name"));
+                lastName = resultSet.getString(resultSet.findColumn("last_name"));
                 address = resultSet.getString(resultSet.findColumn("address"));
-                phone = String.valueOf(resultSet.getInt(resultSet.findColumn("phone")));
+                phone = String.valueOf(resultSet.getLong(resultSet.findColumn("phone")));
                 email = resultSet.getString(resultSet.findColumn("email"));
 
                 customer = new Customer(customerID, firstName, lastName, address, phone, email, null);

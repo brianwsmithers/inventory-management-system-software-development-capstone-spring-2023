@@ -1,18 +1,18 @@
 package com.inventorymanagementsystem.inventory.management.system.domain;
 
 public class Customer {
-    private Integer customerId;
-    private String fname;
-    private String lname;
+    private long customerId;
+    private String firstName;
+    private String lastName;
     private String address;
     private String phone;
     private String email;
     private Integer staffID;
 
-    public Customer(Integer customerId, String fname, String lname, String address, String phone, String email, Integer staffID) {
+    public Customer(long customerId, String firstName, String lastName, String address, String phone, String email, Integer staffID) {
         this.customerId = customerId;
-        this.fname = fname;
-        this.lname = lname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.email = email;
@@ -23,7 +23,7 @@ public class Customer {
 
     }
 
-    public Integer getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
@@ -31,20 +31,20 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLname() {
-        return lname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -83,8 +83,8 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "customerId=" + customerId +
-                ", fname='" + fname + '\'' +
-                ", lname='" + lname + '\'' +
+                ", fname='" + firstName + '\'' +
+                ", lname='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
