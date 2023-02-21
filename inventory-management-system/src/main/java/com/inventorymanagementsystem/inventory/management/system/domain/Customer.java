@@ -1,7 +1,9 @@
 package com.inventorymanagementsystem.inventory.management.system.domain;
 
 public class Customer {
+    /** This value is auto generated from the database */
     private long customerId;
+
     private String firstName;
     private String lastName;
     private String address;
@@ -9,6 +11,19 @@ public class Customer {
     private String email;
     private Integer staffID;
 
+    /**
+     * Authors: Elleni, Brian<br>
+     * Date: 2/20/23<br>
+     * Constructor: Customer<br>
+     * Description: This constructor is for getting a <code>Customer</code> object from the database.
+     * @param customerId
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param phone
+     * @param email
+     * @param staffID
+     */
     public Customer(long customerId, String firstName, String lastName, String address, String phone, String email, Integer staffID) {
         this.customerId = customerId;
         this.firstName = firstName;
@@ -19,16 +34,62 @@ public class Customer {
         this.staffID = staffID;
     }
 
-    public Customer(){
+    /**
+     * Author: Brian Smithers<br>
+     * Date: 2/20/23<br>
+     * Constructor: Customer<br>
+     * Description: This constructor is for creating a <code>Customer</code> object for the database.
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param phone
+     * @param email
+     * @param staffID
+     */
+    public Customer(String firstName, String lastName, String address, String phone, String email, Integer staffID) {
+        if (firstName.length() <= 40) {
+            this.firstName = firstName.trim();
+        }
+        else {
+            this.firstName = null;
+        }
 
+        if (lastName.length() <= 40) {
+            this.lastName = lastName.trim();
+        }
+        else {
+            this.lastName = null;
+        }
+
+        if (address.length() <= 40) {
+            this.address = address;
+        }
+        else {
+            this.address = null;
+        }
+
+        if (phone.length() == 10) {
+            this.phone = phone;
+        }
+        else {
+            this.phone = null;
+        }
+
+        if (email.length() <= 40) {
+            this.email = email;
+        }
+        else {
+            this.email = null;
+        }
+
+        this.staffID = staffID;
+    }
+
+    public Customer(){
     }
 
     public long getCustomerId() {
         return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
     }
 
     public String getFirstName() {

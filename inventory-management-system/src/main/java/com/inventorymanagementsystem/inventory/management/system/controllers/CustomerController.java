@@ -1,18 +1,22 @@
 package com.inventorymanagementsystem.inventory.management.system.controllers;
 
+import com.inventorymanagementsystem.inventory.management.system.data.CustomerService;
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class CustomerController {
 
-    @GetMapping(value = "v1/customers/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Customer getCustomerById(@PathVariable("customerId") Integer id) {
-     return new Customer();
+    @Autowired
+    private CustomerService customerService;
+
+    @RequestMapping(value = "/customers/", params = "customerId")
+    public Optional<Customer> getCustomerById(@RequestParam("customerId") long id) {
+        //TODO validate that input is long
+        return customerService.get(id);
     }
-
-
 }

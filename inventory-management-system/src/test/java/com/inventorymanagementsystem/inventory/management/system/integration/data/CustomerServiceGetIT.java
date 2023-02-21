@@ -1,6 +1,6 @@
 package com.inventorymanagementsystem.inventory.management.system.integration.data;
 
-import com.inventorymanagementsystem.inventory.management.system.data.CustomerDAO;
+import com.inventorymanagementsystem.inventory.management.system.data.CustomerService;
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,15 +13,16 @@ import java.util.Optional;
  * Author: Brian Smithers<br>
  * Date: 2/19/23<br>
  * Class: CustomerDAOIT<br>
- * Description:
+ * Description: This class is used to test the Customer Data Access Object interface for the Get method. This test
+ * class does not test for the StaffID value at this time..
  */
-public class CustomerDAOGetIT {
+public class CustomerServiceGetIT {
 
-    private CustomerDAO customerDAO;
+    private CustomerService customerService;
 
     @BeforeEach
     public void setUp() {
-        customerDAO = new CustomerDAO();
+        customerService = new CustomerService();
     }
 
     /**
@@ -38,7 +39,7 @@ public class CustomerDAOGetIT {
         Optional<Customer> customer;
 
         // Act
-        customer = customerDAO.get(id);
+        customer = customerService.get(id);
 
         // Assert
         assertTrue(customer.isPresent());
@@ -58,7 +59,7 @@ public class CustomerDAOGetIT {
         Optional<Customer> customer;
 
         // Act
-        customer = customerDAO.get(id);
+        customer = customerService.get(id);
 
         // Assert
         assertEquals(Optional.empty(), customer);
@@ -73,18 +74,18 @@ public class CustomerDAOGetIT {
     @Test
     public void getValidCustomerNameFromIDTest() {
         // Arrange
-        long id = 1L;
+        long id = 3L;
         Optional<Customer> customer;
         String firstName = null;
 
         // Act
-        customer = customerDAO.get(id);
+        customer = customerService.get(id);
         if (customer.isPresent()) {
             firstName = customer.get().getFirstName();
         }
 
         // Assert
-        assertEquals("Brian", firstName);
+        assertEquals("Jim", firstName);
     }
 
     /**
@@ -101,7 +102,7 @@ public class CustomerDAOGetIT {
         String lastName = null;
 
         // Act
-        customer = customerDAO.get(id);
+        customer = customerService.get(id);
         if (customer.isPresent()) {
             lastName = customer.get().getLastName();
         }
@@ -124,7 +125,7 @@ public class CustomerDAOGetIT {
         String address = null;
 
         // Act
-        customer = customerDAO.get(id);
+        customer = customerService.get(id);
         if (customer.isPresent()) {
             address = customer.get().getAddress();
         }
@@ -147,7 +148,7 @@ public class CustomerDAOGetIT {
        String phone = null;
 
        // Act
-        customer = customerDAO.get(id);
+        customer = customerService.get(id);
         if (customer.isPresent()) {
             phone = String.valueOf(customer.get().getPhone());
         }

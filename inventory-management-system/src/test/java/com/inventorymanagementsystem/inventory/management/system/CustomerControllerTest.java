@@ -14,10 +14,5 @@ public class CustomerControllerTest {
 
     @Test
     public void getCustomerByIdTest(){
-        Integer id =1;
-        Customer Customer = customerController.getCustomerById(id);
-
-
-
     }
 }

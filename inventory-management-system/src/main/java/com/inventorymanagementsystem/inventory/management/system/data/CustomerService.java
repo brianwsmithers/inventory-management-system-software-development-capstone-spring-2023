@@ -1,11 +1,15 @@
 package com.inventorymanagementsystem.inventory.management.system.data;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * Author: Brian Smithers<br>
@@ -13,8 +17,10 @@ import com.inventorymanagementsystem.inventory.management.system.domain.Customer
  * Class: CustomerDAO<br>
  * Description:
  */
-public class CustomerDAO implements DAO<Customer> {
+@Service
+public class CustomerService implements DAO<Customer> {
 
+    @Autowired
     private final Database database = Database.getInstance();
 
     private ResultSet resultSet;
@@ -31,9 +37,10 @@ public class CustomerDAO implements DAO<Customer> {
      * Author: Brian Smithers<br>
      * Date: 2/19/23 <br>
      * Method: get<br>
-     * Description:
-     * @param id
-     * @return
+     * Description: This method is used to retrieve a <code>Customer</code> object from the database matching it
+     * with their id number in the database.
+     * @param id is a long value
+     * @return <code>Optional</code> object with a type of <code>Customer</code>.
      */
     @Override
     public Optional<Customer> get(long id) {
@@ -75,14 +82,44 @@ public class CustomerDAO implements DAO<Customer> {
         return null;
     }
 
+    /**
+     * Author: Brian Smithers<br>
+     * Date: 2/20/23<br>
+     * Method: save<br>
+     * Description:
+     * @param customer
+     */
     @Override
     public void save(Customer customer) {
+        String query =
+                "INSERT INTO customers (customer_id, first_name, last_name, address, phone, email, staff_id)" +
+                "values (customers_customer_id_seq.nextval, ?, ?, ?, ?, ?, null)";
 
+        database.connect();
+
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = database.preparedQuery(query);
+            preparedStatement.setString(1, customer.getFirstName());
+            preparedStatement.setString(2, customer.getLastName());
+            preparedStatement.setString(3, customer.getAddress());
+            preparedStatement.setLong(4, Long.parseLong(customer.getPhone()));
+            preparedStatement.setString(5, customer.getEmail());
+
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            database.closeConnection();
+        }
     }
 
     @Override
     public void update(Customer customer, String[] params) {
-
     }
 
     @Override
