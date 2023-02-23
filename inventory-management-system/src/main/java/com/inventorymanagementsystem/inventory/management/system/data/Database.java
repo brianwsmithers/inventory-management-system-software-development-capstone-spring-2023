@@ -3,8 +3,7 @@ package com.inventorymanagementsystem.inventory.management.system.data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -37,9 +36,18 @@ public class Database {
      * Date: 2/19/23
      */
     public void connect() {
-        String[] credentials = getDatabaseCredentials();
+        String[] credentials = null;
 
         try {
+            credentials = getDatabaseCredentials();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            assert credentials != null;
             connection = DriverManager.getConnection(credentials[0], credentials[1], credentials[2]);
         }
         catch (SQLException e) {
@@ -51,20 +59,24 @@ public class Database {
      * Date: 2/19/23
      * @return
      */
-    private static String[] getDatabaseCredentials() {
+    private static String[] getDatabaseCredentials() throws IOException {
         String[] credentials = new String[3];
         int i = 0;
+
+        InputStream inputStream;
+
         try {
-            File file = new File("src/main/resources/txt/database_credentials");
-            Scanner scanner = new Scanner(file);
+            inputStream = Database.class.getResourceAsStream("/txt/database_credentials");
+            assert inputStream != null;
+            Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()) {
-                String data = scanner.nextLine();
-                credentials[i] = data;
+                credentials[i] = scanner.nextLine();
                 i++;
             }
+            inputStream.close();
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
+        catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return credentials;
     }

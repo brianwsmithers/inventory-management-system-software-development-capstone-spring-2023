@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Service;
  * Description:
  */
 @Service
-public class CustomerService implements DAO<Customer> {
+public class CustomerDAO implements DAO<Customer> {
 
     @Autowired
     private final Database database = Database.getInstance();

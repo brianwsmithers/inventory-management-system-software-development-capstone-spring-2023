@@ -1,6 +1,6 @@
 package com.inventorymanagementsystem.inventory.management.system.integration.data;
 
-import com.inventorymanagementsystem.inventory.management.system.data.CustomerService;
+import com.inventorymanagementsystem.inventory.management.system.data.CustomerDAO;
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Class: CustomerDAOSaveIT<br>
  * Description:
  */
-public class CustomerServiceSaveIT {
+public class CustomerDAOSaveIT {
 
     /**
      * Date: 2/20/23
@@ -22,14 +22,14 @@ public class CustomerServiceSaveIT {
     @Test
     public void saveValidCustomerTest() {
         // Arrange
-        CustomerService customerService = new CustomerService();
+        CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = new Customer("Frank", "Hollow", "1237 Imaginery Lane",
                 "8641246710", "fhollow@ggc.edu", null);
         Optional<Customer> customerOptional;
 
         // Act
-        customerService.save(customer);
-        customerOptional = customerService.get(5);
+        customerDAO.save(customer);
+        customerOptional = customerDAO.get(5);
 
         // Assert
         assertTrue(customerOptional.isPresent());

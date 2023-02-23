@@ -1,6 +1,6 @@
 package com.inventorymanagementsystem.inventory.management.system.integration.data;
 
-import com.inventorymanagementsystem.inventory.management.system.data.CustomerService;
+import com.inventorymanagementsystem.inventory.management.system.data.CustomerDAO;
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,13 +16,13 @@ import java.util.Optional;
  * Description: This class is used to test the Customer Data Access Object interface for the Get method. This test
  * class does not test for the StaffID value at this time..
  */
-public class CustomerServiceGetIT {
+public class CustomerDAOGetIT {
 
-    private CustomerService customerService;
+    private CustomerDAO customerDAO;
 
     @BeforeEach
     public void setUp() {
-        customerService = new CustomerService();
+        customerDAO = new CustomerDAO();
     }
 
     /**
@@ -39,7 +39,7 @@ public class CustomerServiceGetIT {
         Optional<Customer> customer;
 
         // Act
-        customer = customerService.get(id);
+        customer = customerDAO.get(id);
 
         // Assert
         assertTrue(customer.isPresent());
@@ -59,7 +59,7 @@ public class CustomerServiceGetIT {
         Optional<Customer> customer;
 
         // Act
-        customer = customerService.get(id);
+        customer = customerDAO.get(id);
 
         // Assert
         assertEquals(Optional.empty(), customer);
@@ -79,7 +79,7 @@ public class CustomerServiceGetIT {
         String firstName = null;
 
         // Act
-        customer = customerService.get(id);
+        customer = customerDAO.get(id);
         if (customer.isPresent()) {
             firstName = customer.get().getFirstName();
         }
@@ -102,7 +102,7 @@ public class CustomerServiceGetIT {
         String lastName = null;
 
         // Act
-        customer = customerService.get(id);
+        customer = customerDAO.get(id);
         if (customer.isPresent()) {
             lastName = customer.get().getLastName();
         }
@@ -125,7 +125,7 @@ public class CustomerServiceGetIT {
         String address = null;
 
         // Act
-        customer = customerService.get(id);
+        customer = customerDAO.get(id);
         if (customer.isPresent()) {
             address = customer.get().getAddress();
         }
@@ -148,7 +148,7 @@ public class CustomerServiceGetIT {
        String phone = null;
 
        // Act
-        customer = customerService.get(id);
+        customer = customerDAO.get(id);
         if (customer.isPresent()) {
             phone = String.valueOf(customer.get().getPhone());
         }
