@@ -1,50 +1,111 @@
 package com.inventorymanagementsystem.inventory.management.system.domain;
 
 public class Customer {
-    private Integer customerId;
-    private String fname;
-    private String lname;
+    /** This value is auto generated from the database */
+    private long customerId;
+
+    private String firstName;
+    private String lastName;
     private String address;
     private String phone;
     private String email;
     private Integer staffID;
 
-    public Customer(Integer customerId, String fname, String lname, String address, String phone, String email, Integer staffID) {
+    /**
+     * Authors: Elleni, Brian<br>
+     * Date: 2/20/23<br>
+     * Constructor: Customer<br>
+     * Description: This constructor is for getting a <code>Customer</code> object from the database.
+     * @param customerId
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param phone
+     * @param email
+     * @param staffID
+     */
+    public Customer(long customerId, String firstName, String lastName, String address, String phone, String email, Integer staffID) {
         this.customerId = customerId;
-        this.fname = fname;
-        this.lname = lname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.staffID = staffID;
     }
 
-    public Customer(){
+    /**
+     * Author: Brian Smithers<br>
+     * Date: 2/20/23<br>
+     * Constructor: Customer<br>
+     * Description: This constructor is for creating a <code>Customer</code> object for the database.
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param phone
+     * @param email
+     * @param staffID
+     */
+    public Customer(String firstName, String lastName, String address, String phone, String email, Integer staffID) {
+        if (firstName.length() <= 40) {
+            this.firstName = firstName.trim();
+        }
+        else {
+            this.firstName = null;
+        }
 
+        if (lastName.length() <= 40) {
+            this.lastName = lastName.trim();
+        }
+        else {
+            this.lastName = null;
+        }
+
+        if (address.length() <= 40) {
+            this.address = address;
+        }
+        else {
+            this.address = null;
+        }
+
+        if (phone.length() == 10) {
+            this.phone = phone;
+        }
+        else {
+            this.phone = null;
+        }
+
+        if (email.length() <= 40) {
+            this.email = email;
+        }
+        else {
+            this.email = null;
+        }
+
+        this.staffID = staffID;
     }
 
-    public Integer getCustomerId() {
+    public Customer(){
+    }
+
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getFname() {
-        return fname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -77,5 +138,18 @@ public class Customer {
 
     public void setStaffID(Integer staffID) {
         this.staffID = staffID;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", fname='" + firstName + '\'' +
+                ", lname='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", staffID=" + staffID +
+                '}';
     }
 }
