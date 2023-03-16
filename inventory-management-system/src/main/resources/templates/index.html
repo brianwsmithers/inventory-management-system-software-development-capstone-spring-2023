@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management::Products</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+    <script src="../static.js/src/queryHandler.js"></script>
+
+
+</head>
+
+<body>
+    <div class="w3-container w3-theme w3-center" style="height: 80px;" id="banner">
+        <header>Inventory Management</header>
+    </div>
+
+    <div class="w3-container w3-light-grey">
+        <nav class="w3-text-theme">
+            <a th:href="@{login}">Login</a>
+            <a th:href="@{index}">Search</a>
+            <a th:href="@{home}" class="w3-right">Home</a>
+        </nav>
+    </div>
+
+    <!--element to get a specific product from the db-->
+    <div class="w3-form w3-center">
+        <form action="result" method="get">
+            <label for="searchField">Search: </label>
+            <input type="text" id="searchField"  title="Search Bar" placeholder="Product ID" name="id">
+            <input type="submit" value = "Search" name="getProduct">
+        </form>
+
+
+        <br>
+        <!-- <button class="w3-button" onclick="addRow()">Add</button>
+        <button class="w3-button" onclick="removeRow()">Remove</button> -->
+    </div>
+
+    <!--will display all products on initial load, will display certain products after search command-->
+    
+    <div class="w3-striped">
+        <table class="w3-left" id="productList">
+            <tr class="w3-theme">
+                <th>Product ID</th>
+                <th>Product Description</th>
+                <th>Current Stock</th>
+                <th>SO Quantity</th>
+                <th>PO Quantity</th>
+            </tr>
+    
+            <tr>
+                <td>UD20</td>
+                <td>Universal Drive</td>
+                <td>100</td>
+                <td>30</td>
+                <td>40</td>
+            </tr>
+    
+            <tr>
+                <td>SP88</td>
+                <td>Bluetooth Speaker</td>
+                <td>100</td>
+                <td>30</td>
+                <td>40</td>
+            </tr>
+    
+            <tr>
+                <td>MG04</td>
+                <td>Massage Gun</td>
+                <td>100</td>
+                <td>30</td>
+                <td>40</td>
+            </tr>
+    
+            <tr>
+                <td>FS02</td>
+                <td>Fidget Spinner</td>
+                <td>100</td>
+                <td>30</td>
+                <td>40</td>
+            </tr>
+    
+            <tr>
+                <td>P0005</td>
+                <td>Product 5</td>
+                <td>100</td>
+                <td>30</td>
+                <td>40</td>
+            </tr>
+    
+            <tr>
+                <td>P0006</td>
+                <td>Product 6</td>
+                <td>100</td>
+                <td>30</td>
+                <td>40</td>
+            </tr>
+        </table>
+    </div>
+
+    <form class="w3-container w3-form w3-left" id="addForm" action="addProduct" method = "post">
+        <table class="w3-table w3-theme-l2">
+            <tr>
+                <td><label for="productId">Product ID:</label></td>
+                <td> <input type="text" id="productIdField" name="id"></td>
+            </tr>
+            <tr>
+                <td><label for="productDescription">Product Description:</label></td>
+                <td><input type="text" id="productDescField" name="desc"></td>
+            </tr>
+            <tr>
+                <td><label for="currentStock">Current Stock:</label></td>
+                <td><input type="text" id="currentStockField" name="currStock"></td>
+            </tr>
+            <tr>
+                <td><label for="soQuantity">PO Quantity:</label></td>
+                <td><input type="text" id="soQuantityField" name="soQty"></td>
+            </tr>
+            <tr>
+                <td><label for="poQuantity">PO Quantity:</label> </td>
+                <td><input type="text" id="poQuantityField" name="poQty"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <input type="submit" value="Add" name="submit">
+    </form>
+
+    <form class="w3-container w3-form w3-left" id="removeForm" action="removeProduct" method="get">
+        <table class="w3-table w3-theme-l2">
+            <tr>
+                <td><label for="removalId">Remove Product</label></td>
+                <td><input type="text" placeholder="Enter Product ID" id="removalId" name="id"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Remove" name="submit">
+
+    </form>
+
+
+    <form class="w3-container w3-form w3-right" id="update" action="updateProduct" method = "get">
+        <table class="w3-table w3-theme-l2">
+            <tr>
+                <td><label for="productId">Product ID:</label></td>
+                <td> <input type="text" id="productId" name="id"></td>
+            </tr>
+            <tr>
+                <td><label for="productDesc">Product Description:</label></td>
+                <td><input type="text" id="productDesc" name="desc"></td>
+            </tr>
+            <tr>
+                <td><label for="currentStock">Current Stock:</label></td>
+                <td><input type="text" id="currentStock" name="currStock"></td>
+            </tr>
+            <tr>
+                <td><label for="soQuantity">PO Quantity:</label></td>
+                <td><input type="text" id="soQuantity" name="soQty"></td>
+            </tr>
+            <tr>
+                <td><label for="poQuantity">PO Quantity:</label> </td>
+                <td><input type="text" id="poQuantity" name="poQty"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <input type="submit" value="Update" name="submit">
+    </form>
+
+</body>
+
+</html>

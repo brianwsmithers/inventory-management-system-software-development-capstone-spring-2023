@@ -4,12 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 /**
  * Author: Brian Smithers<br>
@@ -24,7 +26,9 @@ public class CustomerDAO implements DAO<Customer> {
     private final Database database = Database.getInstance();
 
     private ResultSet resultSet;
+
     private PreparedStatement preparedStatement;
+
 
     private long customerID;
     private String firstName;
@@ -45,6 +49,7 @@ public class CustomerDAO implements DAO<Customer> {
      */
     @Override
     public Optional<Customer> get(long id) {
+
         Customer customer = null;
 
         String query =
@@ -196,7 +201,7 @@ public class CustomerDAO implements DAO<Customer> {
         finally {
             database.closeConnection();
         }
-
+        
         return row;
     }
 

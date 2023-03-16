@@ -13,6 +13,7 @@ import java.util.Optional;
  * Source: https://www.baeldung.com/java-dao-pattern
  * @param <T>
  */
+
 @Service
 public interface DAO<T> {
 

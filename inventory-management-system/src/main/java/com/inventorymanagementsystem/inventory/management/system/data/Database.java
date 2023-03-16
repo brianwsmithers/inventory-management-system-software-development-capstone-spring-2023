@@ -12,6 +12,7 @@ import java.util.Scanner;
  * Date: 2/19/23 <br>
  * Class: Database <br>
  * Description: This class is used to connect, disconnect, and query the database.
+
  */
 @Component
 public class Database {
@@ -138,7 +139,7 @@ public class Database {
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
+        
         return preparedStatement;
     }
 }
