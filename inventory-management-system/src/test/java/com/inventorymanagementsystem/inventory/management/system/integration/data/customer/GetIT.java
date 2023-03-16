@@ -1,4 +1,4 @@
-package com.inventorymanagementsystem.inventory.management.system.integration.data;
+package com.inventorymanagementsystem.inventory.management.system.integration.data.customer;
 
 import com.inventorymanagementsystem.inventory.management.system.data.CustomerDAO;
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
@@ -14,9 +14,9 @@ import java.util.Optional;
  * Date: 2/19/23<br>
  * Class: CustomerDAOIT<br>
  * Description: This class is used to test the Customer Data Access Object interface for the Get method. This test
- * class does not test for the StaffID value at this time..
+ * class does not test for the StaffID value at this time...
  */
-public class CustomerDAOGetIT {
+public class GetIT {
 
     private CustomerDAO customerDAO;
 
@@ -156,6 +156,4 @@ public class CustomerDAOGetIT {
         // Assert
         assertEquals("8641236789", phone);
     }
-
-
 }

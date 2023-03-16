@@ -1,4 +1,4 @@
-package com.inventorymanagementsystem.inventory.management.system.unit;
+package com.inventorymanagementsystem.inventory.management.system.unit.database;
 
 import com.inventorymanagementsystem.inventory.management.system.data.Database;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
