@@ -1,25 +1,29 @@
 package com.inventorymanagementsystem.inventory.management.system.data;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Author: Brian Smithers<br>
- * Date: 2/19/23<br>
+ * Date: 3/15/23<br>
  * Interface: DAO<br>
  * Description:
  * Source: https://www.baeldung.com/java-dao-pattern
  * @param <T>
  */
+
+@Service
 public interface DAO<T> {
 
     Optional<T> get(long id);
 
     List<T> getAll();
 
-    void save(T t);
+    int save(T t);
 
-    void update(T t, String[] params);
+    int update(T t);
 
-    void delete(T t);
+    int delete(T t);
 }

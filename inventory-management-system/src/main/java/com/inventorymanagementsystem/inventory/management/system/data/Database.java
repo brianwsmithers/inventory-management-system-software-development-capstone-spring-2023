@@ -11,7 +11,8 @@ import java.util.Scanner;
  * Author: Brian Smithers <br>
  * Date: 2/19/23 <br>
  * Class: Database <br>
- * Description:
+ * Description: This class is used to connect, disconnect, and query the database.
+
  */
 @Component
 public class Database {
@@ -20,8 +21,13 @@ public class Database {
     private static Database instance;
 
     /**
-     * Date: 2/19/23
-     * @return
+     * Author: Brian Smithers <br>
+     * Date: 2/19/23 <br>
+     * Method: getInstance <br>
+     * Description: This method is used to create a Singleton instance of the database class. Currently, this
+     * class function properly; however it will need to be updated at some point to reflect Spring Boot's
+     * requirements for Singleton classes.
+     * @return a <code>Database</code> object.
      */
     public static Database getInstance() {
         if (instance == null) {
@@ -33,7 +39,10 @@ public class Database {
     private Connection connection;
 
     /**
-     * Date: 2/19/23
+     * Author: Brian Smithers <br>
+     * Date: 2/19/23 <br>
+     * Method: connect <br>
+     * Description: This method is used to connect to the database.
      */
     public void connect() {
         String[] credentials = null;
@@ -56,8 +65,11 @@ public class Database {
     }
 
     /**
-     * Date: 2/19/23
-     * @return
+     * Author: Brian Smithers <br>
+     * Date: 2/19/23 <br>
+     * Method: getDatabaseCredentials <br>
+     * Description: This method is used to retrieve the database credentials.
+     * @return an array of type <code>String</code> that contains the database credentials.
      */
     private static String[] getDatabaseCredentials() throws IOException {
         String[] credentials = new String[3];
@@ -76,20 +88,24 @@ public class Database {
             inputStream.close();
         }
         catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+
         return credentials;
     }
 
     /**
-     * Date: 2/19/23
+     * Author: Brian Smithers <br>
+     * Date: 2/19/23 <br>
+     * Method: closeConnection <br>
+     * Description: This method is used to close the connection to the database.
      */
     public void closeConnection() {
         try {
             connection.close();
         }
         catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -116,12 +132,14 @@ public class Database {
      */
     public PreparedStatement preparedQuery(String sqlQuery) {
         PreparedStatement preparedStatement;
+
         try {
             preparedStatement = connection.prepareStatement(sqlQuery);
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        
         return preparedStatement;
     }
 }
