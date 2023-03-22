@@ -32,7 +32,7 @@ public class DeleteIT {
     @Test
     public void deleteAValidCustomerByCustomerId() {
         // Arrange
-        long customerId = 26L;
+        long customerId = 27L;
 
         Customer customer = new Customer(customerId, "Frank", "Hollow", "1237 Imaginery Lane",
                 "8641246710", "fhollow@ggc.edu", null);

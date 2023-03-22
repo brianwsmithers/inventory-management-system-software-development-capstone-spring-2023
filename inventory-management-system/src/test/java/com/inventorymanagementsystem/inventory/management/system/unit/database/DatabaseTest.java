@@ -1,18 +1,16 @@
 package com.inventorymanagementsystem.inventory.management.system.unit.database;
 
-import com.inventorymanagementsystem.inventory.management.system.data.Database;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
- * Author: Brian Smithers<br>
- * Date: 2/23/23
+ * Author: Brian Smithers <br>
+ * Date: 2/23/23 <br>
+ * Class: DatabaseTest <br>
+ * Description:
  */
 public class DatabaseTest {
 

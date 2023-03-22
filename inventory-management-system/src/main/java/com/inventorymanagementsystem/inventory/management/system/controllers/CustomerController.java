@@ -30,7 +30,7 @@ public class CustomerController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/customers/", params = "customerId")
+    @RequestMapping(value = "/customers", params = "customerId")
     public Optional<Customer> getCustomerById(@RequestParam("customerId") long id) {
         return customerService.getCustomer(id);
     }
@@ -44,7 +44,7 @@ public class CustomerController {
      * @param lastName
      * @return
      */
-    @RequestMapping(value = "/getCustomerByName/")
+    @RequestMapping(value = "/getCustomerByName")
     public List<Optional<Customer>> getCustomerByName(@RequestParam String firstName, @RequestParam String lastName) {
         return customerService.getCustomerByFirstAndLastName(firstName, lastName);
     }
@@ -57,7 +57,7 @@ public class CustomerController {
      * @param customer
      * @return
      */
-    @PostMapping(value = "/createCustomer/")
+    @PostMapping(value = "/createCustomer")
     public String createCustomer(@RequestBody Customer customer) {
         return customerService.createCustomer(customer);
     }
@@ -70,7 +70,7 @@ public class CustomerController {
      * @param customer
      * @return
      */
-    @PutMapping(value = "/updateCustomerById/")
+    @PutMapping(value = "/updateCustomerById")
     public String updateCustomerById(@RequestBody Customer customer) {
         return customerService.updateCustomer(customer);
     }
@@ -83,7 +83,7 @@ public class CustomerController {
      * @param customer
      * @return
      */
-    @DeleteMapping(value = "/deleteCustomerById/")
+    @DeleteMapping(value = "/deleteCustomerById")
     public String deleteCustomerById(@RequestBody Customer customer) {
         return customerService.deleteCustomer(customer);
     }

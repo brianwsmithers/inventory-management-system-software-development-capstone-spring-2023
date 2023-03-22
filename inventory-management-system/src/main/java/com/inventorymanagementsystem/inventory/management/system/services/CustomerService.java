@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+//TODO Need to write test cases for the service layer
 /**
  * Author: Brian Smithers <br>
  * Date: 2/25/23 <br>
@@ -39,6 +40,7 @@ public class CustomerService {
         return Optional.empty();
     }
 
+    //TODO need to rewrite test case
     /**
      * Author: Brian Smithers <br>
      * Date: 2/28/23 <br>

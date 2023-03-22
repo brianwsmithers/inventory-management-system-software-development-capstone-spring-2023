@@ -35,7 +35,7 @@ public class GetAllIT {
         // Arrange
         List<Customer> customerList = null;
         int size;
-        int expected = 4;
+        int expected = 5;
 
         // Act
         customerList = customerDAO.getAll();
