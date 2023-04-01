@@ -35,6 +35,7 @@ public class UpdateIT {
                 "1111111111", "jfoxx@ggc.edu", null);
         Optional<Customer> updatedCustomer;
         String actual = null;
+        String message = "The address should be 6000 Imaginary Lane if the update method is successfully called.";
 
         // Act
         customerDAO.update(customer);
@@ -45,7 +46,6 @@ public class UpdateIT {
         }
 
         // Assert
-        Assertions.assertEquals(newAddress, actual, "The address should be 6000 Imaginary Lane" +
-                " if the update method is successfully called.");
+        Assertions.assertEquals(newAddress, actual, message);
     }
 }

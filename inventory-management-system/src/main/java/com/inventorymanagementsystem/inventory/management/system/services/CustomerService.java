@@ -1,6 +1,7 @@
 package com.inventorymanagementsystem.inventory.management.system.services;
 
 import com.inventorymanagementsystem.inventory.management.system.data.CustomerDAO;
+import com.inventorymanagementsystem.inventory.management.system.data.GetByNameable;
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import com.inventorymanagementsystem.inventory.management.system.utilities.StringValidators;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-//TODO Need to write test cases for the service layer
+import static com.inventorymanagementsystem.inventory.management.system.utilities.StringFormatters.databaseActionStringFormatter;
+
 /**
  * Author: Brian Smithers <br>
  * Date: 2/25/23 <br>
@@ -17,7 +19,7 @@ import java.util.Optional;
  * Description: <br>
  */
 @Service
-public class CustomerService {
+public class CustomerService implements GetByNameable<Customer> {
 
     private int rows;
 
@@ -36,27 +38,25 @@ public class CustomerService {
         if (id > 0) {
             return customerDAO.get(id);
         }
-
         return Optional.empty();
     }
 
-    //TODO need to rewrite test case
     /**
      * Author: Brian Smithers <br>
-     * Date: 2/28/23 <br>
-     * Method: getCustomerByFirstAndLastName <br>
+     * Date: 4/1/23 <br>
+     * Method: getByFirstAndLastName <br>
      * Description:
      * @param firstName
      * @param lastName
      * @return
      */
-    public List<Optional<Customer>> getCustomerByFirstAndLastName(String firstName, String lastName) {
-
+    @Override
+    public List<Optional<Customer>> getByFirstAndLastName(String firstName, String lastName) {
         firstName = StringValidators.validateNames(firstName);
         lastName = StringValidators.validateNames(lastName);
 
         if (firstName != null && lastName != null) {
-            return customerDAO.getCustomerByFirstAndLastName(firstName, lastName);
+            return customerDAO.getByFirstAndLastName(firstName, lastName);
         }
         return null;
     }
@@ -85,7 +85,7 @@ public class CustomerService {
 
         if (customer != null) {
             rows = customerDAO.save(customer);
-            return helperStringFormat(rows, "created");
+            return databaseActionStringFormatter(rows, "created");
         }
 
         return null;
@@ -104,7 +104,7 @@ public class CustomerService {
 
         if (customer.getCustomerId() > 0) {
             rows = customerDAO.update(customer);
-            return helperStringFormat(rows, "update");
+            return databaseActionStringFormatter(rows, "update");
         }
 
         return null;
@@ -123,25 +123,9 @@ public class CustomerService {
 
         if (customer.getCustomerId() > 0) {
             rows = customerDAO.delete(customer);
-            return helperStringFormat(rows, "delete");
+            return databaseActionStringFormatter(rows, "delete");
         }
 
         return null;
-    }
-
-    /**
-     * Author: Brian Smithers<br>
-     * Date: 3/15/23<br>
-     * Method: helperStringFormat<br>
-     * Description:
-     * @param rows
-     * @param action
-     * @return
-     */
-    private String helperStringFormat(int rows, String action) {
-        if (rows > 1 || rows == 0) {
-            return String.format("%d rows %s.", rows, action);
-        }
-        return String.format("%d row %s.", rows, action);
     }
 }
