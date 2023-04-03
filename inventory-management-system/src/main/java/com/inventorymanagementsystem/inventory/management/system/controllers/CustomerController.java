@@ -1,6 +1,5 @@
 package com.inventorymanagementsystem.inventory.management.system.controllers;
 
-import com.inventorymanagementsystem.inventory.management.system.data.CustomerDAO;
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import com.inventorymanagementsystem.inventory.management.system.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class CustomerController {
 
     /**
      * Author: Brian Smithers<br>
-     * Date: 2/28/23<br>
+     * Date: 4/1/23<br>
      * Method: getCustomerByName<br>
      * Description:
      * @param firstName
@@ -46,7 +45,7 @@ public class CustomerController {
      */
     @RequestMapping(value = "/getCustomerByName")
     public List<Optional<Customer>> getCustomerByName(@RequestParam String firstName, @RequestParam String lastName) {
-        return customerService.getCustomerByFirstAndLastName(firstName, lastName);
+        return customerService.getByFirstAndLastName(firstName, lastName);
     }
 
     /**

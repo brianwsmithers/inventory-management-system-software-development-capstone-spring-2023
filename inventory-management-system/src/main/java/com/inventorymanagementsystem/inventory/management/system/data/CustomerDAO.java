@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * Description:
  */
 @Repository
-public class CustomerDAO implements DAO<Customer> {
+public class CustomerDAO implements DAO<Customer>, GetByNameable<Customer> {
 
     @Autowired
     private final Database database = Database.getInstance();
@@ -91,7 +91,7 @@ public class CustomerDAO implements DAO<Customer> {
      * @param lastName
      * @return
      */
-    public List<Optional<Customer>> getCustomerByFirstAndLastName(String firstName, String lastName) {
+    public List<Optional<Customer>> getByFirstAndLastName(String firstName, String lastName) {
         final List<Optional<Customer>> customerList = new ArrayList<>();
 
         final String query = "SELECT customer_id, first_name, last_name, address, phone, email" +
@@ -280,6 +280,7 @@ public class CustomerDAO implements DAO<Customer> {
         finally {
             database.closeConnection();
         }
+
         return row;
     }
 }
