@@ -1,0 +1,35 @@
+header {
+    font-size: 2em;
+}
+
+#banner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 30px;
+}
+
+th,
+td {
+    padding: 20px;
+}
+
+table {
+    margin-top: 20px;
+    text-align: center;
+}
+
+p {
+    padding: 50px, 100px, 100px;
+}
+
+/* form{
+    display: table;
+}
+
+#addform label, input{
+    display: table-cell;
+} */
+
+td{
+    text-align: center;
+}

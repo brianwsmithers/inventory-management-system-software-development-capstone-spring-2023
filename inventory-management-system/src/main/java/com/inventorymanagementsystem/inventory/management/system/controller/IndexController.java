@@ -1,5 +1,6 @@
 package com.inventorymanagementsystem.inventory.management.system.controller;
 
+
 import com.inventorymanagementsystem.inventory.management.system.data.CustomerDAO;
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import com.inventorymanagementsystem.inventory.management.system.domain.Product;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+
 @Controller
 public class IndexController {
 
     HashMap<Integer, Product> products = new HashMap<>();
+
     HashMap<Integer, Customer> customers = new HashMap<>();
 
     CustomerDAO customerDAO = new CustomerDAO();
@@ -80,9 +83,11 @@ public class IndexController {
      * @return index.html page
      */
     @RequestMapping("/")
+
     public String index(){
         return "index";
     }
+
 
 
     /**
@@ -96,6 +101,7 @@ public class IndexController {
 
         prodId++;
         products.put(prodId, prod);
+
 
         System.out.println(products.toString());
 
@@ -115,6 +121,7 @@ public class IndexController {
         for(int i = 1; i <= products.keySet().size(); i++){
             if(products.get(i).getId().equalsIgnoreCase(id)){
                 products.remove(i);
+
             }
         }
 
@@ -122,6 +129,7 @@ public class IndexController {
 
         return "index";
     }
+
 
 
     /**
@@ -132,6 +140,7 @@ public class IndexController {
     @GetMapping("/updateProduct")
     public String updateProduct(@ModelAttribute Product newProd){
         for (int i = prodId; i <= products.keySet().size(); i++){
+
                 if (products.get(i).getId().equalsIgnoreCase(newProd.getId())){
                     System.out.println("Old Product: " + products.get(i).toString());
 
@@ -140,6 +149,7 @@ public class IndexController {
                     System.out.println("New Product: " + products.get(i).toString());
                 }
             }
+
         return "index";
     }
 
@@ -157,8 +167,10 @@ public class IndexController {
 
         System.out.println(customers.toString());
 
+
         return "index";
     }
+
 
 
     /**
@@ -206,6 +218,7 @@ public class IndexController {
      * loads the home.html page when the nav link is clicked
      * @return home.html page
      */
+
     @RequestMapping("/home")
     public String home(){
         return "home";
@@ -215,6 +228,7 @@ public class IndexController {
      * loads the login.html page when the nav link is clicked
      * @return login.html page
      */
+
     @RequestMapping("/login")
     public String login(){
         return "login";
@@ -228,5 +242,6 @@ public class IndexController {
     public String indexFromOthers(){
         return "index";
     }
+
 
 }
