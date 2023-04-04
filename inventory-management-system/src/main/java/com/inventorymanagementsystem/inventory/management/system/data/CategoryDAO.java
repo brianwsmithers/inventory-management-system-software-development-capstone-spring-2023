@@ -96,7 +96,8 @@ public class CategoryDAO implements DAO<ProductCategory> {
 
 
     @Override
-    public void save(ProductCategory category) {
+    public int save(ProductCategory category) {
+        int row;
         String query =
                 "INSERT INTO category (category_ID, category_Name, description)" +
                         "values (category_category_id_seq.nextval, ?, ?)";
@@ -111,7 +112,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
             preparedStatement.setString(2, category.getDescription());
 
 
-            preparedStatement.executeUpdate();
+            row = preparedStatement.executeUpdate();
             preparedStatement.close();
         }
         catch (SQLException e) {
@@ -120,10 +121,12 @@ public class CategoryDAO implements DAO<ProductCategory> {
         finally {
             database.closeConnection();
         }
+        return row;
     }
 
     @Override
-    public void update(ProductCategory category, String[] params) {
+    public int update(ProductCategory category) {
+        int row;
         String query =
                 "UPDATE Category" +
                         "SET category_Name = ?, SET Description = ? " +
@@ -140,7 +143,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
             preparedStatement.setInt(3, category.getCategory_ID());
 
 
-            preparedStatement.executeUpdate();
+            row = preparedStatement.executeUpdate();
             preparedStatement.close();
         }
         catch (SQLException e) {
@@ -149,10 +152,12 @@ public class CategoryDAO implements DAO<ProductCategory> {
         finally {
             database.closeConnection();
         }
+        return row;
     }
 
     @Override
-    public void delete(ProductCategory category) {
+    public int delete(ProductCategory category) {
+        int row;
         String query =
                 "DELETE FROM Category" +
                         "WHERE category_ID = ? ";
@@ -166,7 +171,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
             preparedStatement.setInt(1, category.getCategory_ID());
 
 
-            preparedStatement.execute();
+            row = preparedStatement.execute() ? 1: 0;
             preparedStatement.close();
         }
         catch (SQLException e) {
@@ -175,5 +180,6 @@ public class CategoryDAO implements DAO<ProductCategory> {
         finally {
             database.closeConnection();
         }
+        return row;
     }
 }

@@ -1,40 +1,47 @@
 package com.inventorymanagementsystem.inventory.management.system.domain;
 
+/**
+ * Author: Eline Gidey<br>
+ * Date: 3/31/23<br>
+ * Class: Order<br>
+ * Description:
+ */
+
 public class Order {
-    private Integer orderID;
-    private Integer DateOfOrder;
-    private String Order_Details;
+    private Integer order_ID;
+    private Integer date_Of_Order;
+    private String order_Details;
     private Integer customerID;
 
-    public Order(Integer orderID, Integer dateOfOrder, String order_Details, Integer customerID) {
-        this.orderID = orderID;
-        DateOfOrder = dateOfOrder;
-        Order_Details = order_Details;
+    public Order(Integer order_ID, Integer date_Of_Order, String order_Details, Integer customerID) {
+        this.order_ID = order_ID;
+        this.date_Of_Order = date_Of_Order;
+        this.order_Details = order_Details;
         this.customerID = customerID;
     }
 
-    public Integer getOrderID() {
-        return orderID;
+    public Integer getOrder_ID() {
+        return order_ID;
     }
 
-    public void setOrderID(Integer orderID) {
-        this.orderID = orderID;
+    public void setOrder_ID(Integer order_ID) {
+        this.order_ID = order_ID;
     }
 
-    public Integer getDateOfOrder() {
-        return DateOfOrder;
+    public Integer getDate_Of_Order() {
+        return date_Of_Order;
     }
 
-    public void setDateOfOrder(Integer dateOfOrder) {
-        DateOfOrder = dateOfOrder;
+    public void setDate_Of_Order(Integer date_Of_Order) {
+        this.date_Of_Order = date_Of_Order;
     }
 
     public String getOrder_Details() {
-        return Order_Details;
+        return order_Details;
     }
 
     public void setOrder_Details(String order_Details) {
-        Order_Details = order_Details;
+        this.order_Details = order_Details;
     }
 
     public Integer getCustomerID() {
