@@ -1,5 +1,11 @@
 package com.inventorymanagementsystem.inventory.management.system.domain;
 
+/**
+ * Authors: Elleni, Brian <br>
+ * Date: 2/28/23 <br>
+ * Class: Customer <br>
+ * Description:
+ */
 public class Customer {
     /** This value is auto generated from the database */
     private long customerId;
@@ -47,6 +53,8 @@ public class Customer {
      * @param staffID
      */
     public Customer(String firstName, String lastName, String address, String phone, String email, Integer staffID) {
+        //TODO update the setMethods for this constructor.
+        //TODO Make test cases for creating a customer object
         if (firstName.length() <= 40) {
             this.firstName = firstName.trim();
         }
@@ -85,8 +93,7 @@ public class Customer {
         this.staffID = staffID;
     }
 
-    public Customer(){
-    }
+    public Customer() {}
 
     public long getCustomerId() {
         return customerId;

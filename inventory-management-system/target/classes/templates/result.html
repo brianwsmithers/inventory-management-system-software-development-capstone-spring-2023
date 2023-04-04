@@ -1,0 +1,27 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management::Products</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+
+</head>
+<body>
+
+  <h1>Product Result</h1>
+
+  <p>
+  <div style="align-content: center">
+
+      <span>Product ID:</span><span th:text="${id}"></span><br/>
+      <span>Product Description:</span><span th:text="${desc}"></span><br/>
+      <span>Current Stock:</span><span th:text="${currStock}"></span><br/>
+      <span>SO Quantity:</span><span th:text="${soQty}"></span><br/>
+      <span>PO Quantity:</span><span th:text="${poQty}"></span><br/>
+
+  </div>
+  </p>
+</body>
+</html>
