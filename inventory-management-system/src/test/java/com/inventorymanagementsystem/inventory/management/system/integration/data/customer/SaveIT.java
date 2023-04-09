@@ -47,7 +47,7 @@ public class SaveIT {
 
         // Act
         customerDAO.save(customer);
-        customerList = customerDAO.getCustomerByFirstAndLastName(firstName, lastName);
+        customerList = customerDAO.getByFirstAndLastName(firstName, lastName);
         actual = customerList.size();
 
         // Assert

@@ -4,6 +4,7 @@ import com.inventorymanagementsystem.inventory.management.system.data.CustomerDA
 import com.inventorymanagementsystem.inventory.management.system.domain.Customer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.Optional;
  * Description: The purpose of this class is to test that a customer can be retrieved from the databas by their first
  * and last name.
  */
+
 public class GetByNameIT {
 
     private CustomerDAO customerDAO;
@@ -35,13 +37,13 @@ public class GetByNameIT {
     @Test
     public void getCustomerByFirstAndLastNameValidTest() {
         // Arrange
-        String firstName = "Chase";
-        String lastName = "Grizzle";
+        String firstName = "Jim";
+        String lastName = "Baker";
         List<Optional<Customer>> customerList;
         String firstNameFromQuery = null;
 
         // Act
-        customerList = customerDAO.getCustomerByFirstAndLastName(firstName, lastName);
+        customerList = customerDAO.getByFirstAndLastName(firstName, lastName);
         Optional<Customer> customer = customerList.get(0);
 
         if (customer.isPresent()) {
@@ -69,7 +71,7 @@ public class GetByNameIT {
         int actual;
 
         // Act
-        customerList = customerDAO.getCustomerByFirstAndLastName(firstName, lastName);
+        customerList = customerDAO.getByFirstAndLastName(firstName, lastName);
         actual = customerList.size();
 
         // Assert
@@ -94,7 +96,7 @@ public class GetByNameIT {
         int actualSize;
 
         // Act
-        customerList = customerDAO.getCustomerByFirstAndLastName(firstName, lastName);
+        customerList = customerDAO.getByFirstAndLastName(firstName, lastName);
         actualSize = customerList.size();
 
         // Assert

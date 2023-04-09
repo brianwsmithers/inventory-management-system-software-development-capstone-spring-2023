@@ -67,6 +67,16 @@ public class Staff {
         this.password = password;
     }
 
+    /**
+     * Author: Brian Smithers <br>
+     * Date: 4/8/23 <br>
+     * Constructor: Staff <br>
+     * @param staffId
+     */
+    public Staff(long staffId) {
+        this.staffID = staffId;
+    }
+
     public long getStaffID() {
         return staffID;
     }
