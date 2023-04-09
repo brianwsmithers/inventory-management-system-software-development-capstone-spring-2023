@@ -3,15 +3,16 @@ package com.inventorymanagementsystem.inventory.management.system.services;
 import com.inventorymanagementsystem.inventory.management.system.data.GetByNameable;
 import com.inventorymanagementsystem.inventory.management.system.data.StaffDAO;
 import com.inventorymanagementsystem.inventory.management.system.domain.Staff;
-import com.inventorymanagementsystem.inventory.management.system.utilities.StringFormatters;
 import com.inventorymanagementsystem.inventory.management.system.utilities.StringValidators;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 import static com.inventorymanagementsystem.inventory.management.system.utilities.StringFormatters.databaseActionStringFormatter;
 
+@Service
 public class StaffService implements GetByNameable<Staff> {
 
     @Autowired
