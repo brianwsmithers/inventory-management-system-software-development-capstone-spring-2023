@@ -27,8 +27,8 @@ public class UpdateIT {
     public void updateAddressForStaff() {
         // Arrange
         String newAddress = "6000 Imaginary Lane";
-        Staff staff = new Staff(1L, "Aaron", "Brown", newAddress, "1234567890",
-                "abrown@company.com", "jbrown", "password");
+        Staff staff = new Staff(61L, "Aaron", "Brown", newAddress, "1234567890",
+                "abrown@company.com", "abrown", "password");
         int expected = 1;
         int actual;
 

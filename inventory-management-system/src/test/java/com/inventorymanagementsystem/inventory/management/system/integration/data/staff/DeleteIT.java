@@ -22,8 +22,7 @@ public class DeleteIT {
     @Test
     public void deleteTest() {
         // Arrange
-        Staff staff = new Staff(1, "Aaron", "Brown", "6000 Imaginary Lane",
-                "1234567890", "abrown@company.com", "jbrown", "password");
+        Staff staff = new Staff(21);
         int expected = 1;
         int actual = 0;
 

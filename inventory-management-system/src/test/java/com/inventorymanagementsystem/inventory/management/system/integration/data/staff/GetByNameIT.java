@@ -28,8 +28,8 @@ public class GetByNameIT {
     @Test
     public void getStaffByFirstAndLastNameValidTest() {
         // Arrange
-        String firstName = "Aaron";
-        String lastName = "Brown";
+        String firstName = "Brian";
+        String lastName = "Smithers";
         List<Optional<Staff>> staffList;
         String firstNameFromQuery = null;
 
