@@ -86,7 +86,7 @@ public class StaffService implements GetByNameable<Staff> {
     public String updateStaff(Staff staff) {
         rows = 0;
 
-        if (staff.getStaffID() > 0) {
+        if (staff.getStaffId() > 0) {
             rows = staffDAO.update(staff);
             return databaseActionStringFormatter(rows, "update");
         }
@@ -103,7 +103,7 @@ public class StaffService implements GetByNameable<Staff> {
     public String deleteStaff(Staff staff) {
         rows = 0;
 
-        if (staff.getStaffID() > 0){
+        if (staff.getStaffId() > 0){
             rows = staffDAO.delete(staff);
             return databaseActionStringFormatter(rows, "delete");
         }

@@ -93,6 +93,12 @@ public class Customer {
         this.staffID = staffID;
     }
 
+    /**
+     * Author: Brian Smithers <br>
+     * Date: 4/8/23 <br>
+     * Constructor: Customer <br>
+     * Description: A no arg constructor is required to call the createCustomer API. Do NOT delete.
+     */
     public Customer() {}
 
     public long getCustomerId() {
