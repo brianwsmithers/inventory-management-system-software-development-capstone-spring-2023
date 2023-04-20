@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 public class Supplier {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "supplier_ID_seq")
+    @SequenceGenerator(sequenceName = "supplier_ID_seq", allocationSize = 1, name = "supplier_ID_seq")
     private long supplierID;
 
     private String supplierName;
@@ -38,6 +39,10 @@ public class Supplier {
     @Column(name = "supplierID")
     public long getSupplierID() {
         return supplierID;
+    }
+
+    public void setSupplierID(long supplierID) {
+        this.supplierID = supplierID;
     }
 
     @Basic
