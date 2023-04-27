@@ -91,6 +91,7 @@ public class CustomerDAO implements DAO<Customer>, GetByNameable<Customer> {
      * @param lastName
      * @return
      */
+    @Override
     public List<Optional<Customer>> getByFirstAndLastName(String firstName, String lastName) {
         final List<Optional<Customer>> customerList = new ArrayList<>();
 

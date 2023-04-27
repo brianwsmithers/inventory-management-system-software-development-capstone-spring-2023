@@ -120,7 +120,7 @@ NOCYCLE;
     Create Suppliers Table
 */
 CREATE TABLE suppliers (
-    supplier_ID         NUMBER          NOT NULL,
+    supplierID         NUMBER          NOT NULL,
     supplier_name       VARCHAR2(40)    NOT NULL,
     address             VARCHAR2(40)    NOT NULL,
     phone               NUMBER(10)      NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE suppliers (
     email               VARCHAR2(40)    NOT NULL,
     supplier_details    VARCHAR2(40),
 
-    CONSTRAINT suppliers_pk PRIMARY KEY (supplier_ID)
+    CONSTRAINT suppliers_pk PRIMARY KEY (supplierID)
 );
 
 /*
@@ -168,11 +168,11 @@ CREATE TABLE products (
     product_quantity            NUMBER              NOT NULL,
     --product_status            NUMBER                              what should this be used for?
     --other_details             VARCHAR2(40)                        what should this be used for?
-    supplier_ID                 NUMBER              NOT NULL,
+    supplierID                  NUMBER              NOT NULL,
     category_ID                 NUMBER              NOT NULL,
 
     CONSTRAINT products_pk PRIMARY KEY (product_ID),
-    FOREIGN KEY (supplier_ID) REFERENCES suppliers (supplier_ID),
+    FOREIGN KEY (supplierID) REFERENCES suppliers (supplierID),
     FOREIGN KEY (category_ID) REFERENCES product_category (category_ID)
 );
 

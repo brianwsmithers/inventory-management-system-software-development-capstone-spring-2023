@@ -173,7 +173,7 @@ public class StaffDAO implements DAO<Staff>, GetByNameable<Staff> {
             preparedStatement.setString(5, staff.getEmail());
             preparedStatement.setString(6, staff.getUsername());
             preparedStatement.setString(7, staff.getPassword());
-            preparedStatement.setLong(8, staff.getStaffID());
+            preparedStatement.setLong(8, staff.getStaffId());
 
             row = preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -200,7 +200,7 @@ public class StaffDAO implements DAO<Staff>, GetByNameable<Staff> {
 
         try {
             preparedStatement = database.preparedQuery(query);
-            preparedStatement.setLong(1, staff.getStaffID());
+            preparedStatement.setLong(1, staff.getStaffId());
 
             row = preparedStatement.executeUpdate();
             preparedStatement.close();

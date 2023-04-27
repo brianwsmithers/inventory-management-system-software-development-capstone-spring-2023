@@ -3,15 +3,16 @@ package com.inventorymanagementsystem.inventory.management.system.services;
 import com.inventorymanagementsystem.inventory.management.system.data.GetByNameable;
 import com.inventorymanagementsystem.inventory.management.system.data.StaffDAO;
 import com.inventorymanagementsystem.inventory.management.system.domain.Staff;
-import com.inventorymanagementsystem.inventory.management.system.utilities.StringFormatters;
 import com.inventorymanagementsystem.inventory.management.system.utilities.StringValidators;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 import static com.inventorymanagementsystem.inventory.management.system.utilities.StringFormatters.databaseActionStringFormatter;
 
+@Service
 public class StaffService implements GetByNameable<Staff> {
 
     @Autowired
@@ -85,7 +86,7 @@ public class StaffService implements GetByNameable<Staff> {
     public String updateStaff(Staff staff) {
         rows = 0;
 
-        if (staff.getStaffID() > 0) {
+        if (staff.getStaffId() > 0) {
             rows = staffDAO.update(staff);
             return databaseActionStringFormatter(rows, "update");
         }
@@ -102,7 +103,7 @@ public class StaffService implements GetByNameable<Staff> {
     public String deleteStaff(Staff staff) {
         rows = 0;
 
-        if (staff.getStaffID() > 0){
+        if (staff.getStaffId() > 0){
             rows = staffDAO.delete(staff);
             return databaseActionStringFormatter(rows, "delete");
         }

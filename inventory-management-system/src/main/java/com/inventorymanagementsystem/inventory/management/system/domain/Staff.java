@@ -8,7 +8,7 @@ package com.inventorymanagementsystem.inventory.management.system.domain;
  */
 public class Staff {
 
-    private long staffID;
+    private long staffId;
     private String firstName;
     private String lastName;
     private String address;
@@ -22,7 +22,7 @@ public class Staff {
      * Date: 3/22/23<br>
      * Constructor: Staff<br>
      * Description: This constructor is used to retrieve a staff member from the database.
-     * @param staffID
+     * @param staffId
      * @param firstName
      * @param lastName
      * @param address
@@ -31,9 +31,9 @@ public class Staff {
      * @param username
      * @param password
      */
-    public Staff(long staffID, String firstName, String lastName, String address, String phone, String email,
+    public Staff(long staffId, String firstName, String lastName, String address, String phone, String email,
                  String username, String password) {
-        this.staffID = staffID;
+        this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -67,8 +67,26 @@ public class Staff {
         this.password = password;
     }
 
-    public long getStaffID() {
-        return staffID;
+    /**
+     * Author: Brian Smithers <br>
+     * Date: 4/8/23 <br>
+     * Constructor: Staff <br>
+     * Description: A no arg constructor is required to call the createStaff API. Do NOT delete.
+     */
+    public Staff() {}
+
+    /**
+     * Author: Brian Smithers <br>
+     * Date: 4/8/ 23 <br>
+     * Constructor: Staff <br>
+     * @param staffId
+     */
+    public Staff(long staffId) {
+        this.staffId = staffId;
+    }
+
+    public long getStaffId() {
+        return staffId;
     }
 
     public String getFirstName() {
@@ -125,5 +143,19 @@ public class Staff {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staffID=" + staffId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
