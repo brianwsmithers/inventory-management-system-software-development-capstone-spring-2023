@@ -5,6 +5,7 @@ import com.inventorymanagementsystem.inventory.management.system.domain.ProductC
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class OrderDAO implements DAO<Order> {
 
 
     private Integer orderID;
-    private Integer dateOfOrder;
+    private Date dateOfOrder;
     private  String orderDetails;
     private Integer customerID = null;
 
@@ -34,8 +35,8 @@ public class OrderDAO implements DAO<Order> {
         Order order = null;
 
         String query =
-                "SELECT Order_ID, Date_of_Order, Order_Details" +
-                        "FROM order WHERE Order_ID = " + id;
+                "SELECT Order_ID, Date_of_Order, Order_Details " +
+                        "FROM orders WHERE Order_ID = " + id;
 
         database.connect();
 
@@ -44,7 +45,7 @@ public class OrderDAO implements DAO<Order> {
 
             while (resultSet.next()) {
                 orderID = resultSet.getInt(resultSet.findColumn("Order_ID"));
-                dateOfOrder = resultSet.getInt(resultSet.findColumn("Date_of_Order"));
+                dateOfOrder = resultSet.getDate(resultSet.findColumn("Date_of_Order"));
                 orderDetails = resultSet.getString(resultSet.findColumn("Order_Details"));
 
                 order = new Order((int)orderID, dateOfOrder, orderDetails, null);
@@ -66,8 +67,8 @@ public class OrderDAO implements DAO<Order> {
         Order order = null;
 
         String query =
-                "SELECT Order_ID, Date_of_Order, Order_Details" +
-                        "FROM order WHERE Date_of_Order = " + date; // HEre change order_ID to date column from the db
+                "SELECT Order_ID, Date_of_Order, Order_Details " +
+                        "FROM ORDERS WHERE Date_of_Order = " + date; // HEre change order_ID to date column from the db
         // AND covert the string date to datetime in oracle
 
         database.connect();
@@ -77,7 +78,7 @@ public class OrderDAO implements DAO<Order> {
 
             while (resultSet.next()) {
                 orderID = resultSet.getInt(resultSet.findColumn("Order_ID"));
-                dateOfOrder = resultSet.getInt(resultSet.findColumn("Date_of_Order"));
+                dateOfOrder = resultSet.getDate(resultSet.findColumn("Date_of_Order"));
                 orderDetails = resultSet.getString(resultSet.findColumn("Order_Details"));
 
                 order = new Order((int)orderID, dateOfOrder, orderDetails, null);
@@ -98,7 +99,7 @@ public class OrderDAO implements DAO<Order> {
     public List<Order> getAll() {
         final List<Order> order = new ArrayList<>();
 
-        final String query = "SELECT * FROM order";
+        final String query = "SELECT * FROM ORDERS";
 
         database.connect();
 
@@ -107,7 +108,7 @@ public class OrderDAO implements DAO<Order> {
 
             while (resultSet.next()) {
                 orderID = resultSet.getInt(resultSet.findColumn("Order_ID"));
-                dateOfOrder = resultSet.getInt(resultSet.findColumn("Date_of_Order"));
+                dateOfOrder = resultSet.getDate(resultSet.findColumn("Date_of_Order"));
                 orderDetails = resultSet.getString(resultSet.findColumn("Order_Details"));
 
                 order.add(new Order(orderID, dateOfOrder, orderDetails, null ));
@@ -126,8 +127,8 @@ public class OrderDAO implements DAO<Order> {
     @Override
     public int save(Order order) {
         final String query =
-                "INSERT INTO order (Order_ID, Date_of_Order, Order_Details, Customer_ID)" +
-                        "values (order_order_id_seq.nextval, ?, ?)";
+                "INSERT INTO ORDERS (Order_ID, Date_of_Order, Order_Details, Customer_ID) " +
+                        "values (ORDERS_ORDER_ID_SEQ.nextval, ?, ?, ?)";
         int row = 0;
         database.connect();
 
@@ -135,9 +136,9 @@ public class OrderDAO implements DAO<Order> {
 
         try {
             preparedStatement = database.preparedQuery(query);
-            preparedStatement.setInt(1, order.getOrder_ID());
-            preparedStatement.setInt(2, order.getDate_Of_Order());
-            preparedStatement.setString(3, order.getOrder_Details());
+            preparedStatement.setDate(1, order.getDate_Of_Order());
+            preparedStatement.setString(2, order.getOrder_Details());
+            preparedStatement.setInt(3, order.getCustomerID());
 
             row = preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -157,8 +158,8 @@ public class OrderDAO implements DAO<Order> {
         int row=0;
 
         String query =
-                "UPDATE Order" +
-                        "SET Order_Details = ?" +
+                "UPDATE ORDERS " +
+                        "SET Order_Details = ? " +
                         "WHERE order_ID = ? ";
 
         database.connect();
@@ -167,11 +168,9 @@ public class OrderDAO implements DAO<Order> {
 
         try {
             preparedStatement = database.preparedQuery(query);
-            preparedStatement.setInt(1, order.getOrder_ID());
-            preparedStatement.setInt(2, order.getDate_Of_Order());
-            preparedStatement.setString(3, order.getOrder_Details());
-            preparedStatement.setInt(3, order.getCustomerID());
 
+            preparedStatement.setString(1, order.getOrder_Details());
+            preparedStatement.setInt(2, order.getOrder_ID());
 
             row=preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -188,7 +187,7 @@ public class OrderDAO implements DAO<Order> {
     @Override
     public int delete(Order order) {
         String query =
-                "DELETE FROM Order" +
+                "DELETE FROM ORDERS " +
                         "WHERE order_ID = ? ";
         int row=0;
 
@@ -200,7 +199,7 @@ public class OrderDAO implements DAO<Order> {
             preparedStatement = database.preparedQuery(query);
             preparedStatement.setInt(1, order.getOrder_ID());
 
-            row = preparedStatement.execute() ? 1 : 0;
+            row = preparedStatement.executeUpdate();
             preparedStatement.close();
         }
         catch (SQLException e) {

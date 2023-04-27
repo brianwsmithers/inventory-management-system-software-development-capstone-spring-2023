@@ -20,7 +20,7 @@ public class ProductCategoryController {
     @Autowired
     private ProductCategoryService productCategoryService;
 
-    @RequestMapping(value = "/category/", params = "categoryId")
+    @RequestMapping(value = "/category", params = "categoryId")
     public Optional<ProductCategory> getCategoryById(@RequestParam("categoryId") int id) {
         return productCategoryService.getProductCategory(id);
     }

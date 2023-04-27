@@ -1,5 +1,7 @@
 package com.inventorymanagementsystem.inventory.management.system.domain;
 
+import java.sql.Date;
+
 /**
  * Author: Eline Gidey<br>
  * Date: 3/31/23<br>
@@ -9,11 +11,11 @@ package com.inventorymanagementsystem.inventory.management.system.domain;
 
 public class Order {
     private Integer order_ID;
-    private Integer date_Of_Order;
+    private Date date_Of_Order;
     private String order_Details;
     private Integer customerID;
 
-    public Order(Integer order_ID, Integer date_Of_Order, String order_Details, Integer customerID) {
+    public Order(Integer order_ID, Date date_Of_Order, String order_Details, Integer customerID) {
         this.order_ID = order_ID;
         this.date_Of_Order = date_Of_Order;
         this.order_Details = order_Details;
@@ -28,11 +30,11 @@ public class Order {
         this.order_ID = order_ID;
     }
 
-    public Integer getDate_Of_Order() {
+    public Date getDate_Of_Order() {
         return date_Of_Order;
     }
 
-    public void setDate_Of_Order(Integer date_Of_Order) {
+    public void setDate_Of_Order(Date date_Of_Order) {
         this.date_Of_Order = date_Of_Order;
     }
 

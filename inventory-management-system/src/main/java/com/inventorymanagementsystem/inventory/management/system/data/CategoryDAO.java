@@ -35,8 +35,8 @@ public class CategoryDAO implements DAO<ProductCategory> {
         ProductCategory category = null;
 
         String query =
-                "SELECT category_ID, category_Name, description " +
-                        "FROM category WHERE category_ID = " + id;
+                "SELECT category_ID, category_Name, category_description " +
+                        "FROM PRODUCT_CATEGORY WHERE category_ID = " + id;
 
         database.connect();
 
@@ -46,7 +46,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
             while (resultSet.next()) {
                 categoryID = resultSet.getInt(resultSet.findColumn("category_ID"));
                 categoryName = resultSet.getString(resultSet.findColumn("category_Name"));
-                description = resultSet.getString(resultSet.findColumn("description"));
+                description = resultSet.getString(resultSet.findColumn("category_description"));
 
 
                 category = new ProductCategory((int)categoryID, categoryName, description);
@@ -67,7 +67,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
         ProductCategory category = null;
         List<ProductCategory> categoryList = new ArrayList<ProductCategory>();
         String query =
-                "SELECT category_ID, category_Name, description FROM category";
+                "SELECT category_ID, category_Name, category_description FROM PRODUCT_CATEGORY";
 
         database.connect();
 
@@ -77,7 +77,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
             while (resultSet.next()) {
                 categoryID = resultSet.getLong(resultSet.findColumn("category_ID"));
                 categoryName = resultSet.getString(resultSet.findColumn("category_Name"));
-                description = resultSet.getString(resultSet.findColumn("description"));
+                description = resultSet.getString(resultSet.findColumn("category_description"));
 
 
                 category = new ProductCategory((int)categoryID, categoryName, description);
@@ -99,8 +99,8 @@ public class CategoryDAO implements DAO<ProductCategory> {
     public int save(ProductCategory category) {
         int row;
         String query =
-                "INSERT INTO category (category_ID, category_Name, description)" +
-                        "values (category_category_id_seq.nextval, ?, ?)";
+                "INSERT INTO PRODUCT_CATEGORY (category_ID, category_Name, category_description)" +
+                        "values (product_category_id_seq.nextval, ?, ?)";
 
         database.connect();
 
@@ -128,8 +128,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
     public int update(ProductCategory category) {
         int row;
         String query =
-                "UPDATE Category" +
-                        "SET category_Name = ?, SET Description = ? " +
+                "UPDATE PRODUCT_CATEGORY SET category_Name = ?, category_Description = ? " +
                         "WHERE category_ID = ? ";
 
         database.connect();
@@ -159,7 +158,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
     public int delete(ProductCategory category) {
         int row;
         String query =
-                "DELETE FROM Category" +
+                "DELETE FROM PRODUCT_CATEGORY " +
                         "WHERE category_ID = ? ";
 
         database.connect();
@@ -171,7 +170,7 @@ public class CategoryDAO implements DAO<ProductCategory> {
             preparedStatement.setInt(1, category.getCategory_ID());
 
 
-            row = preparedStatement.execute() ? 1: 0;
+            row = preparedStatement.executeUpdate();
             preparedStatement.close();
         }
         catch (SQLException e) {
