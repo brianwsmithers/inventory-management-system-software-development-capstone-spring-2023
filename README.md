@@ -24,8 +24,8 @@
     There is a sql script that is already written and is in the sql resources folder so all that is need is to copy and paste the file in sqldeveloper and run the script
 
 ## How to Run this Program
-Right click on ```gs-uploading-files-initial```, click ```run as```, and in the options to run the file select ```Spring Boot App```. Finally,
+Right click on ```InventoryManagementApplication```, click ```run as```, and in the options to run the file select ```Spring Boot App```. Finally,
 go to a web browser of your choosing and type in the following ```localhost:8080```.
 
-If using Intellij, run the file ```UploadingFileApplication```. Once the command line displays the SpringBoot information, open a web browser and type ```localhost:8080``` into the search bar.
+If using Intellij, run the file ```InventoryManagementSystemApplication```. Once the command line displays the SpringBoot information, open a web browser and type ```localhost:8080``` into the search bar.
 
