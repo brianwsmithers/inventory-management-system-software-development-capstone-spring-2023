@@ -1,0 +1,44 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management::CustomerResult</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+
+</head>
+<body>
+<div class="w3-container w3-theme w3-center" style="height: 80px;" id="banner">
+    <header>Inventory Management</header>
+</div>
+
+<div class="w3-container w3-light-grey">
+    <nav class="w3-text-theme">
+        <a th:href="@{login}">Login</a>&nbsp;
+
+        <a th:href="@{index}">Forms</a> &nbsp;
+        <a th:href="@{products}">Products</a>&nbsp;
+        <a th:href="@{customers}">Customers</a>&nbsp;
+        <a th:href="@{staff}">Staff</a>&nbsp;
+        <a th:href="@{suppliers}">Suppliers</a>&nbsp;
+        <a th:href="@{orders}">Orders</a>&nbsp;
+
+        <a th:href="@{home}" class="w3-right">Home</a>
+    </nav>
+</div>
+
+<div class="w3-container w3-center">
+    <p>
+    <div style="align-content: center">
+
+        <span>Order ID:</span><span th:text="${order_ID}"></span><br/>
+        <span>Order Date:</span><span th:text="${#dates.format(date_Of_Order, 'dd-MM-yyyy')}"></span><br/>
+        <span>Details:</span><span th:text="${order_Details}"></span><br/>
+        <span>Customer ID:</span><span th:text="${customerID}"></span><br/>
+
+    </div>
+    </p>
+</div>
+</body>
+</html>
