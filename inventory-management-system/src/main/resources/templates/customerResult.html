@@ -1,0 +1,47 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management::CustomerResult</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+
+</head>
+<body>
+<div class="w3-container w3-theme w3-center" style="height: 80px;" id="banner">
+    <header>Inventory Management</header>
+</div>
+
+<div class="w3-container w3-light-grey">
+    <nav class="w3-text-theme">
+        <a th:href="@{login}">Login</a>&nbsp;
+
+        <a th:href="@{index}">Forms</a> &nbsp;
+        <a th:href="@{products}">Products</a>&nbsp;
+        <a th:href="@{customers}">Customers</a>&nbsp;
+        <a th:href="@{staff}">Staff</a>&nbsp;
+        <a th:href="@{suppliers}">Suppliers</a>&nbsp;
+        <a th:href="@{orders}">Orders</a>&nbsp;
+
+        <a th:href="@{home}" class="w3-right">Home</a>
+    </nav>
+</div>>
+
+<div class="w3-container w3-center">
+    <p>
+    <div style="align-content: center">
+
+        <span>Customer ID:</span><span th:text="${customerId}"></span><br/>
+        <span>First Name:</span><span th:text="${fName}"></span><br/>
+        <span>Last Name:</span><span th:text="${lName}"></span><br/>
+        <span>Address:</span><span th:text="${address}"></span><br/>
+        <span>Phone Number:</span><span th:text="${phone}"></span><br/>
+        <span>Email:</span><span th:text="${email}"></span><br/>
+        <span>Staff ID:</span><span th:text="${staffId}"></span><br/>
+
+    </div>
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management::Products Table</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="../static.js/src/queryHandler.js"></script>
+
+
+</head>
+
+<body>
+<div class="w3-container w3-theme w3-center" style="height: 80px;" id="banner">
+  <header>Inventory Management</header>
+</div>
+
+<div class="w3-container w3-light-grey">
+  <nav class="w3-text-theme">
+    <a th:href="@{login}">Login</a>&nbsp;
+
+    <a th:href="@{index}">Forms</a> &nbsp;
+    <a th:href="@{products}">Products</a>&nbsp;
+    <a th:href="@{customers}">Customers</a>&nbsp;
+    <a th:href="@{staff}">Staff</a>&nbsp;
+    <a th:href="@{suppliers}">Suppliers</a>&nbsp;
+    <a th:href="@{orders}">Orders</a>&nbsp;
+
+    <a th:href="@{home}" class="w3-right">Home</a>
+  </nav>
+</div>
+
+<!--<div class="w3-form w3-center">-->
+<!--  <label>Search: </label>-->
+<!--  <input type="text" id="searchField"  title="Search Bar" placeholder="Product ID">-->
+<!--  <button class="w3-btn w3-theme" onClick="queryTable('productTable')">Search</button>-->
+<!--  <br>-->
+<!--  &lt;!&ndash; <button class="w3-button" onclick="addRow()">Add</button>-->
+<!--  <button class="w3-button" onclick="removeRow()">Remove</button> &ndash;&gt;-->
+<!--</div>-->
+
+<!--element to get a specific product from the db-->
+<div class="w3-form w3-center">
+  <form action="result" method="get">
+    <label for="searchField">Search: </label>
+    <input type="text" id="searchField"  title="Search Bar" placeholder="Product ID" name="id">
+    <input type="submit" value = "Search" name="getProduct">
+  </form>
+</div>
+
+
+<!--  <br>-->
+<!-- <button class="w3-button" onclick="addRow()">Add</button>
+<button class="w3-button" onclick="removeRow()">Remove</button> -->
+<!--</div>-->
+
+<!--will display all products on initial load, will display certain products after search command-->
+
+<div >
+  <table class="table table-bordered table-striped" id="productTable">
+    <tr class="headings">
+      <th class="column-title">Product ID</th>
+      <th class="column-title">Product Description</th>
+      <th class="column-title">Current Stock</th>
+      <th class="column-title">SO Quantity</th>
+      <th class="column-title">PO Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="even pointer" th:each="row:${productRows}" id = "tablerow">
+      <td class=" " th:text="${row.id}">Product ID</td>
+      <td class=" " th:text="${row.desc}">Product Description</td>
+      <td class=" " th:text="${row.getCurrStock()}">Current Stock</td>
+      <td class=" " th:text="${row.soQty}">SO Quantity</td>
+      <td class=" " th:text="${row.poQty}">PO Quantity</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>

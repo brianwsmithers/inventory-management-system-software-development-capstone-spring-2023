@@ -1,6 +1,6 @@
 package com.inventorymanagementsystem.inventory.management.system.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Author: Eline Gidey<br>

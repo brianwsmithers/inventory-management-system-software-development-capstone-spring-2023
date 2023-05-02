@@ -1,0 +1,70 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management::CustomerResult</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+</head>
+
+<body>
+<div class="w3-container w3-theme w3-center" style="height: 80px;" id="banner">
+  <header>Inventory Management</header>
+</div>
+
+<div class="w3-container w3-light-grey">
+  <nav class="w3-text-theme">
+    <a th:href="@{login}">Login</a>&nbsp;
+
+    <a th:href="@{index}">Forms</a> &nbsp;
+    <a th:href="@{products}">Products</a>&nbsp;
+    <a th:href="@{customers}">Customers</a>&nbsp;
+    <a th:href="@{staff}">Staff</a>&nbsp;
+    <a th:href="@{suppliers}">Suppliers</a>&nbsp;
+    <a th:href="@{orders}">Orders</a>&nbsp;
+
+    <a th:href="@{home}" class="w3-right">Home</a>
+  </nav>
+</div>
+
+<!--element to get a specific product from the db-->
+<div class="w3-form w3-center">
+  <form action="result" method="get">
+    <label for="searchField">Search: </label>
+    <input type="text" id="searchField"  title="Search Bar" placeholder="Product ID" name="id">
+    <input type="submit" value = "Search" name="getProduct">
+  </form>
+
+
+  <br>
+  <!-- <button class="w3-button" onclick="addRow()">Add</button>
+  <button class="w3-button" onclick="removeRow()">Remove</button> -->
+</div>
+
+<!--will display all products on initial load, will display certain products after search command-->
+
+<div >
+  <table class="table table-bordered table-striped">
+    <tr class="headings">
+      <th class="column-title">Order ID</th>
+      <th class="column-title">Date of Order</th>
+      <th class="column-title">Customer ID</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="even pointer" th:each="row:${orderRows}" id = "tablerow">
+      <td class=" ">
+        <a th:href="@{/orderResult(order_ID = ${row.order_ID})}"><span th:text="${#numbers.formatInteger(row.order_ID,3)}"></span></a>
+      </td>
+      <td class=" " th:text="${#dates.format(row.date_Of_Order, 'dd-MM-yyyy')}">Date</td>
+      <td class=" " th:text="${#numbers.formatInteger(row.customerID,3)}">Staff ID</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>

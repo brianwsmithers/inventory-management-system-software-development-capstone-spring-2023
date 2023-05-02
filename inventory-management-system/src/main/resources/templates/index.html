@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th = "http://www.thymeleaf.org"
+
+      xmlns:th="http://www.thymeleaf.org"
+
 >
 <head>
     <meta charset="UTF-8">
@@ -10,112 +12,65 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
-    <script src="../static.js/src/queryHandler.js"></script>
 
 
 </head>
 
 <body>
-    <div class="w3-container w3-theme w3-center" style="height: 80px;" id="banner">
-        <header>Inventory Management</header>
-    </div>
 
-    <div class="w3-container w3-light-grey">
-        <nav class="w3-text-theme">
-            <a th:href="@{login}">Login</a>
-            <a th:href="@{index}">Search</a>
-            <a th:href="@{home}" class="w3-right">Home</a>
-        </nav>
-    </div>
+<div class="w3-container w3-theme w3-center" style="height: 80px;" id="banner">
+    <header>Inventory Management</header>
+</div>
 
-    <!--element to get a specific product from the db-->
-    <div class="w3-form w3-center">
-        <form action="result" method="get">
-            <label for="searchField">Search: </label>
-            <input type="text" id="searchField"  title="Search Bar" placeholder="Product ID" name="id">
-            <input type="submit" value = "Search" name="getProduct">
-        </form>
+<div class="w3-container w3-light-grey">
+    <nav class="w3-text-theme">
+        <a th:href="@{login}">Login</a>&nbsp;
+
+        <a th:href="@{index}">Forms</a> &nbsp;
+        <a th:href="@{products}">Products</a>&nbsp;
+        <a th:href="@{customers}">Customers</a>&nbsp;
+        <a th:href="@{staff}">Staff</a>&nbsp;
+        <a th:href="@{suppliers}">Suppliers</a>&nbsp;
+        <a th:href="@{orders}">Orders</a>&nbsp;
+
+        <a th:href="@{home}" class="w3-right">Home</a>
+    </nav>
+</div>
+
+<!--element to get a specific product from the db-->
+<!--<div class="w3-form w3-center">-->
+<!--    <form action="result" method="get">-->
+<!--        <label for="searchField">Search: </label>-->
+<!--        <input type="text" id="searchField" title="Search Bar" placeholder="Product ID" name="id">-->
+<!--        <input type="submit" value="Search" name="getProduct">-->
+<!--    </form>-->
 
 
-        <br>
-        <!-- <button class="w3-button" onclick="addRow()">Add</button>
-        <button class="w3-button" onclick="removeRow()">Remove</button> -->
-    </div>
+<!--    <br>-->
+<!--    &lt;!&ndash; <button class="w3-button" onclick="addRow()">Add</button>-->
+<!--    <button class="w3-button" onclick="removeRow()">Remove</button> &ndash;&gt;-->
+<!--</div>-->
 
-    <!--will display all products on initial load, will display certain products after search command-->
-    
-    <div class="w3-striped">
-        <table class="w3-left" id="productList">
-            <tr class="w3-theme">
-                <th>Product ID</th>
-                <th>Product Description</th>
-                <th>Current Stock</th>
-                <th>SO Quantity</th>
-                <th>PO Quantity</th>
-            </tr>
-    
-            <tr>
-                <td>UD20</td>
-                <td>Universal Drive</td>
-                <td>100</td>
-                <td>30</td>
-                <td>40</td>
-            </tr>
-    
-            <tr>
-                <td>SP88</td>
-                <td>Bluetooth Speaker</td>
-                <td>100</td>
-                <td>30</td>
-                <td>40</td>
-            </tr>
-    
-            <tr>
-                <td>MG04</td>
-                <td>Massage Gun</td>
-                <td>100</td>
-                <td>30</td>
-                <td>40</td>
-            </tr>
-    
-            <tr>
-                <td>FS02</td>
-                <td>Fidget Spinner</td>
-                <td>100</td>
-                <td>30</td>
-                <td>40</td>
-            </tr>
-    
-            <tr>
-                <td>P0005</td>
-                <td>Product 5</td>
-                <td>100</td>
-                <td>30</td>
-                <td>40</td>
-            </tr>
-    
-            <tr>
-                <td>P0006</td>
-                <td>Product 6</td>
-                <td>100</td>
-                <td>30</td>
-                <td>40</td>
-            </tr>
-        </table>
-    </div>
+<!--will display all products on initial load, will display certain products after search command-->
 
-    <form class="w3-container w3-form w3-left" id="addForm" action="addProduct" method = "post">
+
+<!--Products CRUD forms-->
+<div class="w3-container">
+
+
+    <form class="w3-container w3-form w3-left" id="addForm" action="addProduct" method="post">
         <table class="w3-table w3-theme-l2">
             <tr>
                 <td><label for="productId">Product ID:</label></td>
-                <td> <input type="text" id="productIdField" name="id"></td>
+                <td><input type="text" id="productIdField" name="id"></td>
             </tr>
             <tr>
-                <td><label for="productDescription">Product Description:</label></td>
+                <td><label for="productDescField">Product Description:</label></td>
                 <td><input type="text" id="productDescField" name="desc"></td>
             </tr>
             <tr>
-                <td><label for="currentStock">Current Stock:</label></td>
+                <td><label for="currentStockField">Current Stock:</label></td>
+
                 <td><input type="text" id="currentStockField" name="currStock"></td>
             </tr>
             <tr>
@@ -123,7 +78,9 @@
                 <td><input type="text" id="soQuantityField" name="soQty"></td>
             </tr>
             <tr>
-                <td><label for="poQuantity">PO Quantity:</label> </td>
+
+                <td><label for="poQuantity">PO Quantity:</label></td>
+
                 <td><input type="text" id="poQuantityField" name="poQty"></td>
             </tr>
             <tr>
@@ -145,11 +102,12 @@
     </form>
 
 
-    <form class="w3-container w3-form w3-right" id="update" action="updateProduct" method = "get">
+    <form class="w3-container w3-form w3-left" id="update" action="updateProduct" method="get">
         <table class="w3-table w3-theme-l2">
             <tr>
                 <td><label for="productId">Product ID:</label></td>
-                <td> <input type="text" id="productId" name="id"></td>
+                <td><input type="text" id="productId" name="id"></td>
+
             </tr>
             <tr>
                 <td><label for="productDesc">Product Description:</label></td>
@@ -164,15 +122,362 @@
                 <td><input type="text" id="soQuantity" name="soQty"></td>
             </tr>
             <tr>
-                <td><label for="poQuantity">PO Quantity:</label> </td>
+
+                <td><label for="poQuantity">PO Quantity:</label></td>
+
                 <td><input type="text" id="poQuantity" name="poQty"></td>
             </tr>
             <tr>
                 <td></td>
             </tr>
         </table>
-        <input type="submit" value="Update" name="submit">
+
+        <input type="submit" value="Update" name="submitProductUpdate">
     </form>
+</div>
+<br>
+
+
+<!--Customer CRUD forms-->
+<div class="w3-container w3-grey">
+    <form class="w3-container w3-form w3-left" id="addCustomerForm" action="addCustomer" method="post">
+        <table class="w3-table w3-theme-l2">
+            <!--            <tr>-->
+            <!--                <td><label for="customerIdField">Customer ID:</label></td>-->
+            <!--                <td><input type="number" id="customerIdField" name="customerId"></td>-->
+            <!--            </tr>-->
+            <tr>
+                <td><label for="addCustomerFName">First Name:</label></td>
+                <td><input type="text" id="addCustomerFName" name="firstName"></td>
+            </tr>
+            <tr>
+                <td><label for="addCustomerLName">Last Name:</label></td>
+                <td><input type="text" id="addCustomerLName" name="lastName"></td>
+            </tr>
+            <tr>
+                <td><label for="addCustomerAddress">Address:</label></td>
+                <td><input type="text" id="addCustomerAddress" name="address"></td>
+            </tr>
+            <tr>
+                <td><label for="addCustomerPhone">Phone:</label></td>
+                <td><input type="text" id="addCustomerPhone" name="phone"></td>
+            </tr>
+            <tr>
+                <td><label for="addCustomerEmail">Email:</label></td>
+                <td><input type="text" id="addCustomerEmail" name="email"></td>
+            </tr>
+            <tr>
+                <td><label for="addCustomerStaffId">Staff ID:</label></td>
+                <td><input type="number" id="addCustomerStaffId" name="staffID"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <input type="submit" value="Add" name="submit">
+    </form>
+
+
+    <form class="w3-container w3-form w3-left" id="removeCustomerForm" action="removeCustomer" method="get">
+        <table class="w3-table w3-theme-l2">
+            <tr>
+                <td><label for="customerRemovalId">Remove Customer</label></td>
+                <td><input type="text" placeholder="Enter Customer ID" id="customerRemovalId" name="customerId"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Remove" name="submit">
+
+    </form>
+
+
+    <form class="w3-container w3-form w3-left" id="updateCustomerForm" action="updateCustomer" method="get">
+        <table class="w3-table w3-theme-l2">
+            <tr>
+                <td><label for="updateCustomerIdField">Customer ID:</label></td>
+                <td><input type="number" id="updateCustomerIdField" name="customerId"></td>
+            </tr>
+            <tr>
+                <td><label for="updateCustomerFName">First Name:</label></td>
+                <td><input type="text" id="updateCustomerFName" name="firstName"></td>
+            </tr>
+            <tr>
+                <td><label for="updateCustomerLName">Last Name:</label></td>
+                <td><input type="text" id="updateCustomerLName" name="lastName"></td>
+            </tr>
+            <tr>
+                <td><label for="updateCustomerAddress">Address:</label></td>
+                <td><input type="text" id="updateCustomerAddress" name="address"></td>
+            </tr>
+            <tr>
+                <td><label for="updateCustomerPhone">Phone:</label></td>
+                <td><input type="text" id="updateCustomerPhone" name="phone"></td>
+            </tr>
+            <tr>
+                <td><label for="updateCustomerEmail">Email:</label></td>
+                <td><input type="text" id="updateCustomerEmail" name="email"></td>
+            </tr>
+            <tr>
+                <td><label for="updateCustomerStaffId">Staff ID:</label></td>
+                <td><input type="number" id="updateCustomerStaffId" name="staffID"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <input type="submit" value="Update" name="submitCustomerUpdate">
+    </form>
+</div>
+
+<br>
+
+<!--Staff CRUD forms-->
+<div class="w3-container">
+    <form class="w3-container w3-form w3-left" id="addStaffForm" action="addStaff" method="post">
+        <table class="w3-table w3-theme-l2">
+            <!--            <tr>-->
+            <!--                <td><label for="customerIdField">Customer ID:</label></td>-->
+            <!--                <td><input type="number" id="customerIdField" name="customerId"></td>-->
+            <!--            </tr>-->
+            <tr>
+                <td><label for="addStaffFName">First Name:</label></td>
+                <td><input type="text" id="addStaffFName" name="firstName"></td>
+            </tr>
+            <tr>
+                <td><label for="addStaffLName">Last Name:</label></td>
+                <td><input type="text" id="addStaffLName" name="lastName"></td>
+            </tr>
+            <tr>
+                <td><label for="addStaffAddress">Address:</label></td>
+                <td><input type="text" id="addStaffAddress" name="address"></td>
+            </tr>
+            <tr>
+                <td><label for="addStaffPhone">Phone:</label></td>
+                <td><input type="text" id="addStaffPhone" name="phone"></td>
+            </tr>
+            <tr>
+                <td><label for="addStaffEmail">Email:</label></td>
+                <td><input type="text" id="addStaffEmail" name="email"></td>
+            </tr>
+            <tr>
+                <td><label for="addUsername">Username:</label></td>
+                <td><input type="text" id="addUsername" name="username"></td>
+            </tr>
+            <tr>
+                <td><label for="addPassword">Password:</label></td>
+                <td><input type="text" id="addPassword" name="password"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <input type="submit" value="Add" name="submit">
+    </form>
+
+
+    <form class="w3-container w3-form w3-left" id="removeStaffForm" action="removeStaff" method="get">
+        <table class="w3-table w3-theme-l2">
+            <tr>
+                <td><label for="staffRemovalId">Remove Staff</label></td>
+                <td><input type="text" placeholder="Enter Staff ID" id="staffRemovalId" name="staffId"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Remove" name="submit">
+
+    </form>
+
+
+    <form class="w3-container w3-form w3-left" id="updateStaffForm" action="updateStaff" method="get">
+        <table class="w3-table w3-theme-l2">
+
+            <tr>
+                <td><label for="staffIdField">Staff ID:</label></td>
+                <td><input type="number" id="staffIdField" name="staffId"></td>
+            </tr>
+            <tr>
+                <td><label for="updateStaffFName">First Name:</label></td>
+                <td><input type="text" id="updateStaffFName" name="firstName"></td>
+            </tr>
+            <tr>
+                <td><label for="updateStaffLName">Last Name:</label></td>
+                <td><input type="text" id="updateStaffLName" name="lastName"></td>
+            </tr>
+            <tr>
+                <td><label for="updateStaffAddress">Address:</label></td>
+                <td><input type="text" id="updateStaffAddress" name="address"></td>
+            </tr>
+            <tr>
+                <td><label for="updateStaffPhone">Phone:</label></td>
+                <td><input type="text" id="updateStaffPhone" name="phone"></td>
+            </tr>
+            <tr>
+                <td><label for="updateStaffEmail">Email:</label></td>
+                <td><input type="text" id="updateStaffEmail" name="email"></td>
+            </tr>
+            <tr>
+                <td><label for="updateUsername">Username:</label></td>
+                <td><input type="text" id="updateUsername" name="username"></td>
+            </tr>
+            <tr>
+                <td><label for="updatePassword">Password:</label></td>
+                <td><input type="password" id="updatePassword" name="password"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <input type="submit" value="Update" name="submitStaffUpdate">
+    </form>
+</div>
+
+<br>
+
+<!--Supplier CRUD forms-->
+<div class="w3-container w3-grey">
+    <form class="w3-container w3-form w3-left" id="addSupplierForm" action="addSupplier" method="post">
+        <table class="w3-table w3-theme-l2">
+
+            <tr>
+                <td><label for="addSupplierID">Supplier ID:</label></td>
+                <td><input type="number" id="addSupplierID" name="supplierID"></td>
+            </tr>
+            <tr>
+                <td><label for="addSupplierName">Supplier Name:</label></td>
+                <td><input type="text" id="addSupplierName" name="supplierName"></td>
+            </tr>
+            <tr>
+                <td><label for="addSupplierAddress">Address:</label></td>
+                <td><input type="text" id="addSupplierAddress" name="address"></td>
+            </tr>
+            <tr>
+                <td><label for="addSupplierPhoneNum">Phone:</label></td>
+                <td><input type="text" id="addSupplierPhoneNum" name="phone"></td>
+            </tr>
+            <tr>
+                <td><label for="addSupplierFax">Fax:</label></td>
+                <td><input type="number" id="addSupplierFax" name="fax"></td>
+            </tr>
+            <tr>
+                <td><label for="addSupplierEmail">Email:</label></td>
+                <td><input type="text" id="addSupplierEmail" name="email"></td>
+            </tr>
+            <tr>
+                <td><label for="addSupplierDetails">Supplier Details:</label></td>
+                <td><input type="text" id="addSupplierDetails" name="supplierDetails"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Add" name="submit">
+    </form>
+
+
+    <form class="w3-container w3-form w3-left" id="removeSupplierForm" action="removeSupplier" method="get">
+        <table class="w3-table w3-theme-l2">
+            <tr>
+                <td><label for="staffRemovalId">Remove Staff</label></td>
+                <td><input type="text" placeholder="Enter Staff ID" id="supplierRemovalId" name="supplierID"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Remove" name="submit">
+
+    </form>
+
+
+    <form class="w3-container w3-form w3-left" id="updateSupplierForm" action="updateSupplier" method="get">
+        <table class="w3-table w3-theme-l2">
+
+            <tr>
+                <td><label for="updateSupplierId">Supplier Name:</label></td>
+                <td><input type="text" id="updateSupplierId" name="supplierID"></td>
+            </tr>
+            <tr>
+                <td><label for="updateSupplierName">Supplier Name:</label></td>
+                <td><input type="text" id="updateSupplierName" name="supplierName"></td>
+            </tr>
+            <tr>
+                <td><label for="updateSupplierAddress">Address:</label></td>
+                <td><input type="text" id="updateSupplierAddress" name="address"></td>
+            </tr>
+            <tr>
+                <td><label for="updateSupplierPhoneNum">Address:</label></td>
+                <td><input type="text" id="updateSupplierPhoneNum" name="phone"></td>
+            </tr>
+            <tr>
+                <td><label for="updateSupplierFax">Fax:</label></td>
+                <td><input type="text" id="updateSupplierFax" name="fax"></td>
+            </tr>
+            <tr>
+                <td><label for="updateSupplierEmail">Email:</label></td>
+                <td><input type="text" id="updateSupplierEmail" name="email"></td>
+            </tr>
+            <tr>
+                <td><label for="updateSupplierDetails">Username:</label></td>
+                <td><input type="text" id="updateSupplierDetails" name="supplierDetails"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Update" name="submitStaffUpdate">
+    </form>
+</div>
+
+<br>
+
+<!--Order CRUD forms-->
+<div class="w3-container w3-grey">
+    <form class="w3-container w3-form w3-left" id="addOrderForm" action="addOrder" method="post">
+        <table class="w3-table w3-theme-l2">
+
+            <tr>
+                <td><label for="addOrderDate">Order Date:</label></td>
+                <td><input type="date" id="addOrderDate" name="date_Of_Order"></td>
+            </tr>
+            <tr>
+                <td><label for="addOrderDetails">Order Details:</label></td>
+                <td><input type="text" id="addOrderDetails" name="order_Details"></td>
+            </tr>
+            <tr>
+                <td><label for="addCustomerID">Customer ID:</label></td>
+                <td><input type="text" id="addCustomerID" name="customerID"></td>
+            </tr>
+
+        </table>
+        <input type="submit" value="Add" name="submit">
+    </form>
+
+
+    <form class="w3-container w3-form w3-left" id="removeOrderForm" action="removeOrder" method="get">
+        <table class="w3-table w3-theme-l2">
+            <tr>
+                <td><label for="orderRemovalID">Remove Order</label></td>
+                <td><input type="text" placeholder="Enter Order ID" id="orderRemovalID" name="Order ID"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Remove" name="submit">
+
+    </form>
+
+
+    <form class="w3-container w3-form w3-left" id="updateOrderForm" action="updateOrder" method="get">
+        <table class="w3-table w3-theme-l2">
+
+            <tr>
+                <td><label for="updateOrderID">Order ID:</label></td>
+                <td><input type="text" id="updateOrderID" name="order_ID"></td>
+            </tr>
+            <tr>
+                <td><label for="updateOrderDate">Order Date:</label></td>
+                <td><input type="date" id="updateOrderDate" name="date_Of_Order"></td>
+            </tr>
+            <tr>
+                <td><label for="updateOrderDetails">Order Details:</label></td>
+                <td><input type="text" id="updateOrderDetails" name="order_Details"></td>
+            </tr>
+            <tr>
+                <td><label for="updateCustomerID">Customer ID:</label></td>
+                <td><input type="text" id="updateCustomerID" name="customerID"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Update" name="submitStaffUpdate">
+    </form>
+</div>
+
 
 </body>
 

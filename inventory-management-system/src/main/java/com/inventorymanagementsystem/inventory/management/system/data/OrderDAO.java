@@ -136,7 +136,7 @@ public class OrderDAO implements DAO<Order> {
 
         try {
             preparedStatement = database.preparedQuery(query);
-            preparedStatement.setDate(1, order.getDate_Of_Order());
+            preparedStatement.setDate(1, (Date) order.getDate_Of_Order());
             preparedStatement.setString(2, order.getOrder_Details());
             preparedStatement.setInt(3, order.getCustomerID());
 
