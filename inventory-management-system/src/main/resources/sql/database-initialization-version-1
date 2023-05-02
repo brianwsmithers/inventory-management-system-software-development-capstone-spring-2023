@@ -123,7 +123,7 @@ CREATE TABLE suppliers (
     supplierID         NUMBER          NOT NULL,
     supplier_name       VARCHAR2(40)    NOT NULL,
     address             VARCHAR2(40)    NOT NULL,
-    phone               NUMBER(10)      NOT NULL,
+    phone               VARCHAR2(10)      NOT NULL,
     fax                 NUMBER(10),
     email               VARCHAR2(40)    NOT NULL,
     supplier_details    VARCHAR2(40),
