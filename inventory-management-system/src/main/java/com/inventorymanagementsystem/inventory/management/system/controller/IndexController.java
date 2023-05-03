@@ -385,7 +385,12 @@ public class IndexController {
     }
 
 
-
+    /**
+     * Processes a post request and binds the passed Customer object to the model
+     * adds the Customer object as a new entry to the customers table
+     * @param cust
+     * @return
+     */
     @PostMapping("/addCustomer")
     public String addCustomer(@ModelAttribute Customer cust){
 
@@ -397,7 +402,7 @@ public class IndexController {
 
 
     /**
-     * removes the customer with the specified customer id attribute from the HashMap/Database
+     * removes the customer with the specified customer id attribute from the customers table
      * @param id
      * @return index.html page
      */
@@ -415,7 +420,7 @@ public class IndexController {
 
 
     /**
-     * replaces an existing customer in the HashMap/Database
+     * replaces an existing customer in the customers table
      * @param newCust
      * @return index.html page
      */
@@ -433,7 +438,12 @@ public class IndexController {
 
 
 
-
+    /**
+     * Processes a post request and binds the passed Staff object to the model
+     * adds the Staff object as a new entry to the staff table
+     * @param staffMem
+     * @return index.html
+     */
     @PostMapping("/addStaff")
     public String addStaff(@ModelAttribute Staff staffMem){
 
@@ -445,7 +455,7 @@ public class IndexController {
 
 
     /**
-     * removes the staff member with the specified staff id attribute from the HashMap/Database
+     * removes the staff member with the specified staff id attribute from the staff table
      * @param id
      * @return index.html page
      */
@@ -463,7 +473,7 @@ public class IndexController {
 
 
     /**
-     * replaces an existing staff member in the HashMap/Database
+     * replaces an existing staff member in the staff table
      * @param newStaff
      * @return index.html page
      */
@@ -474,7 +484,12 @@ public class IndexController {
     }
 
 
-
+    /**
+     * Processes a post request and binds the passed Supplier object to the model
+     * adds the Supplier object as a new entry to the suppliers table
+     * @param supplier
+     * @return index.html
+     */
     @PostMapping("/addSupplier")
     public String addSupplier(@ModelAttribute Supplier supplier){
 
@@ -483,6 +498,12 @@ public class IndexController {
         return "index";
     }
 
+
+    /**
+     * removes the supplier with the specified staff id attribute from the suppliers table
+     * @param id
+     * @return index.html page
+     */
     @GetMapping("/removeSupplier")
     public String deleteSupplier(@ModelAttribute("supplierID") long id){
 
@@ -492,20 +513,36 @@ public class IndexController {
     }
 
 
+    /**
+     * replaces an existing Supplier entry in the suppliers table
+     * @param newSupplier
+     * @return index.html page
+     */
     @GetMapping("/updateSupplier")
     public String updateSupplier(@ModelAttribute Supplier newSupplier, Model m){
         supplierService.updateSupplier(newSupplier);
         return "index";
     }
 
+    /**
+     * Processes a post request and binds the passed Order object to the model
+     * adds the Order object as a new entry to the orders table
+     * @param newOrder
+     * @return index.html
+     */
     @PostMapping("/addOrder")
     public String addOrder(@ModelAttribute Order newOrder){
         oDAO.save(newOrder);
         return "index";
     }
 
+    /**
+     * removes the staff member with the specified staff id attribute from the order table
+     * @param id
+     * @return index.html page
+     */
     @GetMapping("/removeOrder")
-    public String deleteORder(@ModelAttribute("order_ID") long id){
+    public String deleteOrder(@ModelAttribute("order_ID") int id){
 
         for(Order o: orders){
             if(o.getOrder_ID() == id){
@@ -517,6 +554,11 @@ public class IndexController {
     }
 
 
+    /**
+     * replaces an existing Order entry in the orders table
+     * @param newOrder
+     * @return index.html page
+     */
     @GetMapping("/updateOrder")
     public String updateOrder(@ModelAttribute Order newOrder, Model m){
         oDAO.update(newOrder);
@@ -524,7 +566,13 @@ public class IndexController {
     }
 
 
-
+    /**
+     * gets a Staff entry from the staff table with the passed id
+     * adds attributes from the specified Staff entry to the model which is the displayed on the returned html page
+     * @param staffId
+     * @param m
+     * @return staffResult.html
+     */
     @GetMapping("/staffResult")
     public String getStaffFromLink(@RequestParam(value = "staffId") int staffId, Model m){
 
@@ -543,6 +591,13 @@ public class IndexController {
     }
 
 
+    /**
+     * gets a Customer entry from the customers table with the passed id
+     * adds attributes from the specified Customer entry to the model which is the displayed on the returned html page
+     * @param custId
+     * @param m
+     * @return customerResult.html
+     */
     @GetMapping("/customerResult")
     public String getCustomerFromLink(@RequestParam(value = "customerId") int custId, Model m){
 
@@ -561,6 +616,13 @@ public class IndexController {
         return "customerResult";
     }
 
+    /**
+     * gets a Supplier entry from the suppliers table with the passed id
+     * adds attributes from the specified Supplier entry to the model which is the displayed on the returned html page
+     * @param supplierId
+     * @param m
+     * @return staffResult.html
+     */
     @GetMapping("/supplierResult")
     public String getSupplierFromLink(@RequestParam(value = "supplierID") int supplierId, Model m){
 
@@ -578,6 +640,13 @@ public class IndexController {
         return "supplierResult";
     }
 
+    /**
+     * gets a Order entry from the orders table with the passed id
+     * adds attributes from the specified Order entry to the model which is the displayed on the returned html page
+     * @param orderId
+     * @param m
+     * @return staffResult.html
+     */
     @GetMapping("/orderResult")
     public String getOrderFromLink(@RequestParam(value = "order_ID") int orderId, Model m){
 
